@@ -14,7 +14,84 @@
 module.exports = function(grunt) {
 
 	grunt.config.set('sails-linker', {
-		devJs: {
+    /************************************
+     * Jade linker begins
+     ************************************/
+    devJsJADE: {
+        options: {
+          startTag: '// SCRIPTS',
+          endTag: '// SCRIPTS END',
+          fileTmpl: 'script(type="text/javascript", src="%s")',
+          appRoot: '.tmp/public'
+        },
+        files: {
+          '.tmp/public/**/*.html': require('../pipeline').jsFilesToInject,
+				  'views/**/*.html': require('../pipeline').jsFilesToInject,
+		      'views/**/*.jade': require('../pipeline').jsFilesToInject
+        }
+      },
+
+      prodJsJADE: {
+        options: {
+          startTag: '// SCRIPTS',
+          endTag: '// SCRIPTS END',
+          fileTmpl: 'script(type="text/javascript", src="%s")',
+          appRoot: '.tmp/public'
+        },
+        files: {
+          '.tmp/public/**/*.html': require('../pipeline').jsFilesToInject,
+				  'views/**/*.html': require('../pipeline').jsFilesToInject,
+          'views/**/*.jade': require('../pipeline').jsFilesToInject
+        }
+      },
+
+      devStylesJADE: {
+        options: {
+          startTag: '// STYLES',
+          endTag: '// STYLES END',
+          fileTmpl: 'link(rel="stylesheet", href="%s")',
+          appRoot: '.tmp/public'
+        },
+        files: {
+          '.tmp/public/**/*.html': require('../pipeline').cssFilesToInject,
+				  'views/**/*.html': require('../pipeline').cssFilesToInject,
+          'views/**/*.jade': require('../pipeline').cssFilesToInject
+        }
+      },
+
+      prodStylesJADE: {
+        options: {
+          startTag: '// STYLES',
+          endTag: '// STYLES END',
+          fileTmpl: 'link(rel="stylesheet", href="%s")',
+          appRoot: '.tmp/public'
+        },
+        files: {
+				  '.tmp/public/**/*.html': require('../pipeline').cssFilesToInject,
+				  'views/**/*.html': require('../pipeline').cssFilesToInject,
+          'views/**/*.jade': require('../pipeline').cssFilesToInject
+        }
+      },
+
+      // Bring in JST template object
+      devTplJADE: {
+        options: {
+          startTag: '// TEMPLATES',
+          endTag: '// TEMPLATES END',
+          fileTmpl: 'script(type="text/javascript", src="%s")',
+          appRoot: '.tmp/public'
+        },
+        files: {
+				  '.tmp/public/index.html': ['.tmp/public/jst.js'],
+				  'views/**/*.html': ['.tmp/public/jst.js'],
+          'views/**/*.jade': ['.tmp/public/jst.js']
+        }
+      },
+      /************************************
+       * Jade linker end
+       ************************************/
+
+    devJs: {
 			options: {
 				startTag: '<!--SCRIPTS-->',
 				endTag: '<!--SCRIPTS END-->',

@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+  .container
+    .jumbotron.hero-spacer
+      form(role="form", method="POST", action="./persona/")
+        input(type="hidden", value="undefined", name="returnUrl")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="nombre") Nombre:
+              input.form-control(type="text", value="", name="nombre", placeholder="nombre")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="telefonos") telefonos
+              input.form-control(type="text", value="", name="telefonos", placeholder="telefonos")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="correo") correo
+              input.form-control(type="text", value="", name="correo", placeholder="correo")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="institucionEducativa") Institución Educativa
+              input.form-control(type="text", value="", name="institucionEducativa", placeholder="institucionEducativa")
+          br
+          .row
+            .col-md-6
+              input.btn.btn-lg.btn-danger.btn-block(type="button", onclick="javascript:history.back()", value="Cancel")
+            .col-md-6
+              input.btn.btn-lg.btn-primary.btn-block(type="submit", value="Save")
+          input(type="hidden", value="null", name="_csrf")
+  //
+    nombre: { type:'STRING'},
+        telefonos: { type: 'STRING'},
+        correo : { type: 'STRING'},
+        institucionEducativa : { type : 'STRING' },
+        inscritoEn : {
+          collection : 'Taller',
+          via : 'inscritos',
+          dominant : 'true'
+
+      .row
+        p
+          a.btn.btn-primary.btn-large Call to action!
+    hr

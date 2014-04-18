@@ -9,8 +9,15 @@ module.exports = {
 
   attributes: {
     nombre: { type:'STRING'},
-    telefonos: { type: 'STRING'},
-    correo : { type: 'STRING'},
+    telefonos: {
+      type: 'STRING',
+      unique: true
+    },
+    correo : {
+      type: 'STRING',
+      required: true,
+      unique: true
+    },
     institucionEducativa : { type : 'STRING' },
     inscritoEn : {
       collection : 'Taller',

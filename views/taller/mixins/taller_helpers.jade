@@ -1,0 +1,12 @@
+mixin taller_cuadro(taller)
+  .col-lg-3.col-md-6.hero-feature
+    .thumbnail
+      img(src='http://placehold.it/800x500', alt='')
+      .caption
+        h3= taller.nombre
+        p= taller.descripcion
+        p Fecha: #{taller.fecha}
+        p
+          // a.btn.btn-primary(href='#') Buy Now!
+          a.btn.btn-default(href='/taller/'+taller.id) Ver detalles
+  block

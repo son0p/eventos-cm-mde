@@ -1,0 +1,22 @@
+extends ../layout
+include ./mixins/taller_helpers
+
+block content
+  .container
+    .jumbotron.hero-spacer
+      .row
+        .col-lg-4: .thumbnail
+          img(src='/images/destortilla.jpg')
+        .col-lg-8
+          h1= taller.nombre
+          p= taller.descripcion
+          p Fecha: #{taller.fecha}
+      .row
+        a.btn.btn-primary(href='/taller/'+taller.id+'/inscripcion') Inscribirse
+        a.btn.btn-primary(href='/') Regresar
+    hr
+    .row
+      h3 Inscritos
+      ul.list-group
+        li.list-group-item #{taller.tallerista}
+          span.badge #{taller.institucionEducativo}

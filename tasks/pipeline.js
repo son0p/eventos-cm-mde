@@ -27,6 +27,7 @@ var jsFilesToInject = [
 	// are brought in here
 	'js/dependencies/**/*.js',
 
+  'http://maps.googleapis.com/maps/api/js?v=3&sensor=true',
 	// All of the rest of your client-side js files
 	// will be injected here in no particular order.
 	'js/**/*.js'

@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-	inscribir : function(req, res) {
-    res.view();
+	inscripcion : function(req, res) {
+    res.view('persona/inscripcion');
   }
 };

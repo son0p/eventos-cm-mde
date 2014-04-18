@@ -1,0 +1,25 @@
+extends ../layout
+include ./mixins/taller_helpers
+
+block content
+  .container
+    .jumbotron.hero-spacer
+      .row
+        .col-lg-4: .thumbnail
+          img(src='/images/destortilla.jpg')
+        .col-lg-8
+          h1 Casas de la Música!
+          p
+            | Introduce your website content using this jumbotron! It's an awesome way to call attention to something that needs to be read! It's also a great alternative to using a banner image if you don't have a good quality picture!
+    //
+      .row
+        p
+          a.btn.btn-primary.btn-large Call to action!
+    hr
+    .row
+      .col-lg-12
+        h3 Talleres
+    //          /.row
+    .row.text-center
+      each taller in talleres
+        mixin taller_cuadro(taller)

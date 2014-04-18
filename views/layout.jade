@@ -1,23 +1,46 @@
 doctype html
-html
-  head
-    title= title
-
-    // Viewport mobile tag for sensible mobile support
-    meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
-
-    block styles
-
+html(lang='en')
+head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Basic Company Template for Bootstrap 3
+    //        Bootstrap core CSS
+    link(href='/styles/bootstrap.css', rel='stylesheet')
+    //        Custom CSS for the 'Heroic Features' Template
+    link(href='/styles/heroic-features.css', rel='stylesheet')
   body
-    block body
+    nav.navbar.navbar-fixed-top.navbar-inverse(role='navigation')
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='index.php') Casas de la Música
+        //            Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse.navbar-ex1-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='#about') About
+            li
+              a(href='#services') Services
+            li
+              a(href='#contact') Contact
+        //            /.navbar-collapse
+      //          /.container
+    block content
 
-    // A few optional dependencies, linked in order
+      hr
+      footer
+        .row
+          .col-lg-12
+            p Copyright © Company 2013
+    //        /.container
+    //        JavaScript
 
-    // Bring in the socket.io client
-    script(type="text/javascript", src="/linker/js/socket.io.js")
-
-    // then beef it up with some convenience logic for talking to Sails.js'
-    script(type="text/javascript", src="/linker/js/sails.io.js")
-
-    // listen on socket.io for incoming messages
-    script(type="text/javascript", src="/linker/js/example.js")
+    script(type='text/javascript', src="/js/dependencies/sails.io.js")
+    script(type='text/javascript', src='/js/jquery.js')
+    script(type='text/javascript', src='/js/bootstrap.js')
