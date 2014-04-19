@@ -13,16 +13,19 @@ module.exports = {
   process: function(req, res){
     passport.authenticate('local', function(err, user, info){
       if( (err) || (!user)) {
-        res.redirect('/login');
-        return;
+        return res.redirect('/login');
+        //return;
       }
       req.logIn(user, function(err){
         if(err) res.redirect('/login');
-        return res.redirect('/');
+        //req.session.returnTo es asignada en api/policies/authenticated.js
+        return res.redirect(req.session.returnTo);
       });
     })(req, res);
   },
   logout: function(req, res){
+    sails.log.verbose(req.originalUrl);
+    req.session.returnTo = req.baseUrl;
     req.logout();
     res.send('logout successful');
   }

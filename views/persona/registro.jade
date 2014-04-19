@@ -3,8 +3,7 @@ extends ../layout
 block content
   .container
     .jumbotron.hero-spacer
-      form(role="form", method="POST", action="./persona/")
-        input(type="hidden", value="undefined", name="returnUrl")
+      form(role="form", method="POST", action="/persona/create")
         .row
           fieldset
             .col-md-12
@@ -31,23 +30,3 @@ block content
               input.btn.btn-lg.btn-danger.btn-block(type="button", onclick="javascript:history.back()", value="Cancel")
             .col-md-6
               input.btn.btn-lg.btn-primary.btn-block(type="submit", value="Save")
-          input(type="hidden", value="null", name="_csrf")
-    form(method="POST", action="../contact/destroyAction/6")
-      input(type="hidden", value="delete", name="_method")
-      input#deletebtn_6.delconfirmbtn6.btn.btn-sm.btn-danger(type="button", onclick="$('.delconfirmbtn6').toggleClass('hidden');", value="Delete")
-      input#confirm_btn6.delconfirmbtn6.btn.btn-sm.btn-danger.hidden(type="submit", value="Confirm")
-
-  //
-    nombre: { type:'STRING'},
-        telefonos: { type: 'STRING'},
-        correo : { type: 'STRING'},
-        institucionEducativa : { type : 'STRING' },
-        inscritoEn : {
-          collection : 'Taller',
-          via : 'inscritos',
-          dominant : 'true'
-
-      .row
-        p
-          a.btn.btn-primary.btn-large Call to action!
-    hr

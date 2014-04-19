@@ -1,9 +1,18 @@
-form(action='/login', method='post')
-    div
-        label Username:
-        input(type='text', name='username')
-      div
-        label Password:
-        input(type='password', name='password')
-      div
-        input(type='submit', value='Log In')
+extends ../layout
+
+block content
+  .container: .jumbotron.hero-spacer
+    form(action='/login', method='post')
+      .row: fieldset: col-md-12
+        label.control-label(for='username') Correo electrónico que registró:
+        // ¿Cómo usar en name='correo' que es la variable que esto comprobando?
+        input.form-control(type='text', name='username')
+      .row: fieldset: col-md-12
+        label.control-label(for='password') Teléfono que registró:
+        input.form-control(type='text', name='password')
+      br
+      .row
+        input.btn.btn-primary.btn-block(type='submit', value='Ingresar')
+      br
+      .row
+        a.btn.btn-primary.btn-block(href='/persona/registro') Registrarse

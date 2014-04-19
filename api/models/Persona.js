@@ -10,8 +10,7 @@ module.exports = {
   attributes: {
     nombre: { type:'STRING'},
     telefonos: {
-      type: 'STRING',
-      unique: true
+      type: 'STRING'
     },
     correo : {
       type: 'STRING',

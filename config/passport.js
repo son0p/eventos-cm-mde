@@ -7,7 +7,6 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(correo, done) {
   Persona.findByCorreo(correo, function(err, user){
-    console.log(user);
     done(err, user);
     });
 });
