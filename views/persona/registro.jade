@@ -1,4 +1,5 @@
 extends ../layout
+//include ../mixins/form-helpers
 
 block content
   .container
@@ -12,18 +13,27 @@ block content
         .row
           fieldset
             .col-md-12
-              label.control-label(for="telefonos") telefonos
+              label.control-label(for="telefonos") Teléfono:
               input.form-control(type="text", value="", name="telefonos", placeholder="telefonos")
         .row
           fieldset
             .col-md-12
-              label.control-label(for="correo") correo
+              label.control-label(for="correo") Correo electrónico
               input.form-control(type="text", value="", name="correo", placeholder="correo")
         .row
           fieldset
             .col-md-12
               label.control-label(for="institucionEducativa") Institución Educativa
               input.form-control(type="text", value="", name="institucionEducativa", placeholder="institucionEducativa")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="Nodos") Casa de la música más cercana a su lugar de residencia
+            .col-md-12
+              select.selectpicker.col-md-12(name="nodos", value="", data-live-search="true", data-container="body")
+                - each nodo in nodos
+                  option #{nodo.nombre}
+
           br
           .row
             .col-md-6

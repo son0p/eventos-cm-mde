@@ -16,12 +16,16 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access)
-  '*': 'authenticated',
+  '*': false,//'authenticated',
   AuthController: {
-    '*': true
+    '*': false
   },
   TallerController: {
-    '*': true
+    '*': false
+  },
+  NodoController: {
+    '*': false,
+    'getNodos' : true
   },
   PersonaController: {
     'registro': true,

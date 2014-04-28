@@ -6,7 +6,7 @@
 */
 
 module.exports = {
-
+  schema : true,
   attributes: {
     nombre: { type:'STRING'},
     telefonos: {
@@ -18,8 +18,13 @@ module.exports = {
       unique: true
     },
     institucionEducativa : { type : 'STRING' },
-    inscritoEn : {
+    inscritoEnTaller : {
       collection : 'Taller',
+      via : 'inscritos',
+      dominant : 'true'
+    },
+    inscritoEnNodo : {
+      collection : 'Nodo',
       via : 'inscritos',
       dominant : 'true'
     }
@@ -31,11 +36,11 @@ module.exports = {
    *            => id {Integer} id of the enrolling user
    * @param  {Function} cb
 
-  inscribir: function (options, cb) {
-    Persona.findOne(options.id).exec(function (err, theUser) {
+  inscribirEnNodo: function (persona, cb) {
+    Persona.findOne(persona.id).exec(function (err, theUser) {
       if (err) return cb(err);
       if (!theUser) return cb(new Error('User not found.'));
-      theUser.inscritoEn.add(options.courses);
+      theUser.inscritoEnNodo.add(options.courses);
       theUser.save(cb);
     });
     }

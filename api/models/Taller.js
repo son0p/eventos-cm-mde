@@ -6,7 +6,7 @@
 */
 
 module.exports = {
-
+  schema : true,
   attributes: {
     nombre : { type : 'STRING' },
     descripcion : { type : 'STRING' },
@@ -30,7 +30,7 @@ module.exports = {
      */
     inscritos : {
       collection : 'Persona',
-      via : 'inscritoEn'
+      via : 'inscritoEnTaller'
       }
   }
 };

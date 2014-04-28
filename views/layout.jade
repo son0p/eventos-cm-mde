@@ -8,8 +8,10 @@ head
     title Basic Company Template for Bootstrap 3
     //        Bootstrap core CSS
     link(href='/styles/bootstrap.css', rel='stylesheet')
+    link(href='/styles/bootstrap-select.css', rel='stylesheet')
     //        Custom CSS for the 'Heroic Features' Template
     link(href='/styles/heroic-features.css', rel='stylesheet')
+
   body
     nav.navbar.navbar-fixed-top.navbar-inverse(role='navigation')
       .container
@@ -19,16 +21,16 @@ head
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='index.php') Casas de la Música
+          a.navbar-brand(href='/') Casas de la Música
         //            Collect the nav links, forms, and other content for toggling
         .collapse.navbar-collapse.navbar-ex1-collapse
           ul.nav.navbar-nav
             li
-              a(href='#about') About
+              a(href='/faq') Preguntas frecuentes
             li
-              a(href='#services') Services
+              a(href='/persona/create') Registrarse
             li
-              a(href='#contact') Contact
+              a(href='/login') Autenticarse
         //            /.navbar-collapse
       //          /.container
     block content
@@ -44,3 +46,7 @@ head
     script(type='text/javascript', src="/js/dependencies/sails.io.js")
     script(type='text/javascript', src='/js/jquery.js')
     script(type='text/javascript', src='/js/bootstrap.js')
+    script(type='text/javascript', src='/js/bootstrap-select.js')
+    script(type='text/javascript', src='/js/underscore-min.js')
+    script(type="text/javascript")
+      | $('.selectpicker').selectpicker();

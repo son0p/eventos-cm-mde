@@ -12,6 +12,11 @@ block content
           p= taller.descripcion
           p Fecha: #{taller.fecha}
       .row
+        form(method="POST", action='/taller/' + taller.id )
+          input(type="hidden", value="delete", name="_method")
+          input#deletebtn_6.delconfirmbtn6.btn.btn-sm.btn-danger(type="button", onclick="$('.delconfirmbtn6').toggleClass('hidden');", value="Delete")
+          input#confirm_btn6.delconfirmbtn6.btn.btn-sm.btn-danger.hidden(type="submit", value="Confirm")
+
         a.btn.btn-primary(href='/taller/'+taller.id+'/inscripcion') Inscribirse
         a.btn.btn-primary(href='/') Regresar
     hr

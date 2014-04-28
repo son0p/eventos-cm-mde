@@ -26,15 +26,17 @@ module.exports.routes = {
   // default view engine) your home page.
   //
   // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
-  '/': {
-    controller : 'taller',
-    action : 'index'
-  },
-  // Custom routes here...
-  '/taller/:id/inscripcion': {
-    controller : 'persona',
-    action : 'inscripcion'
-  },
+  '/': ['NodoController.getNodos','PersonaController.registro'],
+    // Custom routes here...
+  'get /taller/:id': 'TallerController.find',
+  // {
+  //   controller : 'taller',
+  //   action : 'find'
+  // }
+  'post /taller/:id': 'TallerController.inscripcion',
+  // { controller : 'taller',
+  //   action : 'inscripcion'
+  // }
 
   'get /login' : 'AuthController.login',
   'post /login' : 'AuthController.process',

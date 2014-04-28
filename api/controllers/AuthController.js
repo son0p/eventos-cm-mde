@@ -8,6 +8,9 @@ var passport = require('passport');
 
 module.exports = {
 	login: function(req, res) {
+    //OJO, para que funcione el /login sin pasar por otro lado
+    req.session.returnTo = '/';
+    // TERMINA OJO
     res.view('auth/login');
   },
   process: function(req, res){
@@ -21,6 +24,7 @@ module.exports = {
         //req.session.returnTo es asignada en api/policies/authenticated.js
         return res.redirect(req.session.returnTo);
       });
+      sails.log.verbose(req.session);
     })(req, res);
   },
   logout: function(req, res){

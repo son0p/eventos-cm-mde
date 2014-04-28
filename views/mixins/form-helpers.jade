@@ -1,0 +1,55 @@
+mixin label(field, title)
+  label(for=field, class="control-label")= title
+
+mixin password(field, value)
+  input.col-sm-6(type="password", id=field, name=field, value=value)
+
+mixin text(field, value)
+  input.col-sm-6(type="text", id=field, name=field, value=value)
+
+mixin textarea(field, value)
+  textarea.col-sm-6(id=field, name=field, rows="5")= value
+
+mixin number(field, value)
+  input.col-sm-2(type="number", id=field, name=field, value=value)
+
+mixin boolean(field, value)
+  input.col-sm-1(type="checkbox", id=field, name=field, checked=value)
+
+mixin date(field, value)
+  input.col-sm-2(type="date", id=field, name=field, value=dateAsValue(value))
+
+mixin datetime(field, value)
+  input.col-sm-2(type="datetime", id=field, name=field, value=value)
+
+mixin selectMultiple(field, value, options)
+  -var options= options
+  -var valores = value.toUpperCase().split(",")
+  select.selectpicker.col-sm-6(id=field, name=field, value= value, multiple, data-live-search="true", data-container="body")
+    - each opcion in options
+      - if(valores.indexOf(opcion) > -1)
+        option(selected="true") #{opcion}
+      - else
+        option #{opcion}
+
+mixin select(field, value, options)
+  -var options= options
+  -var valores = value.toUpperCase().split(",")
+  select.selectpicker.col-sm-6(id=field, name=field, value= value, data-live-search="true", data-container="body")
+    - each opcion in options
+      - if(valores.indexOf(opcion) > -1)
+        option(selected="true") #{opcion}
+      - else
+        option #{opcion}
+
+mixin selectCreate(field, value, options)
+  -var options= options
+  select.selectpicker.col-sm-6(id=field, name=field, value= value, data-live-search="true", data-container="body")
+    - each opcion in options
+      option #{opcion}
+
+mixin tagsInput(field, value)
+  input.col-sm-6(type="text", name= field, value= value, data-role="tagsinput", placeholder="Agregue el nombre y presione enter")
+
+mixin errorMessage(model, field)
+  !{errorFor(model, field)}
