@@ -30,15 +30,31 @@ module.exports = {
     res.view('persona/registro', { nodos : nodos });
   },
   create : function(req, res) {
+    Persona.create(req.body).populate('inscritoEnNodo').exec(function(err, persona){
+      if (err) {
+        return res.send(err);
+      }
+      Nodo.findOne({nombre : req.body.nodos}).populate('inscritos').exec(function (err, nodo){
+        nodo.inscritos.add(persona.id);
+        nodo.save(sails.log.verbose);
+        return res.send(persona);
+      });
+      sails.log.verbose("Nodo elegido: " + nodoElegido);
+
+//      persona.inscritoEnNodo.add(nodoElegido);
+//      persona.save(sails.log.verbose);
+      //Log user in
+      req.session.passport.user = persona.id;
+      req.session.authenticated = true;
+      sails.log.verbose(req.session);
+
+    });
+
     sails.log.verbose(req.body.nodos);
     // REGISTRAR PRIMERO LA PERSONA PARA LUEGO INSCRIBIRLA EN UN NODO
-    Nodo.findOne({nombre : req.body.nodos}).populate('inscritos').exec(function (err, nodo){
-      sails.log.verbose(nodo);
-      nodo.inscritos.add(req.body.id);
-      nodo.save(sails.log.verbose);
-    });
+
     sails.log.verbose(req.body);
-    res.send(req.body);
+    //res.send(req.body);
     // Persona.create(req.body).exec(function(err, persona){
     //   if (err) {
     //     return res.redirect('persona/registro');

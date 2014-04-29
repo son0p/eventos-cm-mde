@@ -24,10 +24,11 @@ module.exports.policies = {
     '*': false
   },
   NodoController: {
-    '*': false,
+    '*': true,
     'getNodos' : true
   },
   PersonaController: {
+    'find' : true,
     'registro': true,
     'create': true
   }
