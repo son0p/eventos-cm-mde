@@ -16,7 +16,7 @@ module.exports = {
       defaultsTo : '30'
       },
     lugar : { type : 'STRING' },
-    fecha : { type : 'DATE' },
+    fecha : { type : 'STRING' },
     hora : { type : 'STRING' },
     contacto : { type : 'STRING' },
     urlImagen : { type : 'STRING' },
