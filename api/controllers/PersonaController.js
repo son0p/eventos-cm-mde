@@ -37,33 +37,14 @@ module.exports = {
       Nodo.findOne({nombre : req.body.nodos}).populate('inscritos').exec(function (err, nodo){
         nodo.inscritos.add(persona.id);
         nodo.save(sails.log.verbose);
-        return res.send(persona);
+        req.flash('message', 'Usted se ha registrado con exito!');
+        return res.redirect('taller');
       });
-      sails.log.verbose("Nodo elegido: " + nodoElegido);
-
-//      persona.inscritoEnNodo.add(nodoElegido);
-//      persona.save(sails.log.verbose);
       //Log user in
       req.session.passport.user = persona.id;
       req.session.authenticated = true;
       sails.log.verbose(req.session);
 
     });
-
-    sails.log.verbose(req.body.nodos);
-    // REGISTRAR PRIMERO LA PERSONA PARA LUEGO INSCRIBIRLA EN UN NODO
-
-    sails.log.verbose(req.body);
-    //res.send(req.body);
-    // Persona.create(req.body).exec(function(err, persona){
-    //   if (err) {
-    //     return res.redirect('persona/registro');
-    //   }
-    //   Log user in
-    //   req.session.passport.user = persona.id;
-    //   req.session.authenticated = true;
-    //   sails.log.verbose(req.session);
-    //   return res.redirect(req.session.returnTo);
-    // });
   }
 };

@@ -16,12 +16,16 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access)
+
+  /*
+   EN DESARROLLO ESTÁ TODO HABILITADO, ES NECESARIO PENSAR CUÁLES VAN EN PRODUCCIÓN
+   */
   '*': false,//'authenticated',
   AuthController: {
-    '*': false
+    '*': true
   },
   TallerController: {
-    '*': false
+    '*': true
   },
   NodoController: {
     '*': true,
