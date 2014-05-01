@@ -22,17 +22,19 @@ module.exports.policies = {
    */
   '*': false,//'authenticated',
   AuthController: {
-    '*': true
+    '*': false
   },
   TallerController: {
-    '*': true
+    '*': false,
+    'index': true,
+    'find': true
   },
   NodoController: {
-    '*': true,
+    '*': false,
     'getNodos' : true
   },
   PersonaController: {
-    'find' : true,
+    'find' : false,
     'registro': true,
     'create': true
   }

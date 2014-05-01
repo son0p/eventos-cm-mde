@@ -27,6 +27,7 @@ module.exports.routes = {
   //
   // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
   '/': ['NodoController.getNodos','PersonaController.registro'],
+  '/persona/registro': ['NodoController.getNodos','PersonaController.registro'],
     // Custom routes here...
   'get /taller/:id': 'TallerController.find',
   // {

@@ -8,6 +8,11 @@
 module.exports = {
 	index : function(req, res) {
     Taller.find().done(function(err, talleres) {
+      _.each(talleres, function(taller) {
+        var descripcion = taller.descripcion;
+        sails.log.verbose(typeof taller.descripcion);
+        if(_.isString(taller.descripcion)) taller.descripcion = descripcion.substr(0,150) + " ...";
+      });
       //sails.log.verbose(talleres);
       res.view({talleres: talleres });
     });
