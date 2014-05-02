@@ -7,7 +7,7 @@
 
 module.exports = {
 	index : function(req, res) {
-    Taller.find().done(function(err, talleres) {
+    Taller.find().exec(function(err, talleres) {
       _.each(talleres, function(taller) {
         var descripcion = taller.descripcion;
         sails.log.verbose(typeof taller.descripcion);
@@ -18,7 +18,7 @@ module.exports = {
     });
   },
   find : function(req, res) {
-    Taller.findOneById(req.param('id')).done(function(err, taller) {
+    Taller.findOneById(req.param('id')).exec(function(err, taller) {
       res.view('taller/detalle',{taller: taller });
       });
   },
