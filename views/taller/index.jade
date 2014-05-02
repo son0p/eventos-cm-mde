@@ -2,10 +2,9 @@ extends ../layout
 include ./mixins/taller_helpers
 
 block content
-  if req.flash('message') == "Usted se ha registrado con exito!"
-    .alert.alert-warning.alert-dismissable
-      button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
-      strong #{req.flash('message')}
+  .alert.alert-warning.alert-dismissable
+    button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+    strong #{req.flash('message')}
 
   .container
     .jumbotron.hero-spacer
