@@ -25,6 +25,7 @@ module.exports = {
   //   });
   // },
   registro : function(req, res) {
+    if(req.isAuthenticated()) res.redirect('/taller');
     var nodos = res.locals.nodos;
     sails.log.verbose(nodos);
     res.view('persona/registro', { nodos : nodos });
