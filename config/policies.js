@@ -20,25 +20,24 @@ module.exports.policies = {
   /*
    EN DESARROLLO ESTÁ TODO HABILITADO, ES NECESARIO PENSAR CUÁLES VAN EN PRODUCCIÓN
    */
-  '*': true//'authenticated',
-  // AuthController: {
-  //   '*': false
-  // },
-  // TallerController: {
-  //   '*': false,
-  //   'index': true,
-  //   'find': true
-  // },
-  // NodoController: {
-  //   '*': false,
-  //   'getNodos' : true
-  // },
-  // PersonaController: {
-  //   'find' : false,
-  //   'registro': true,
-  //   'create': true
-  // },
-
+  '*': false,//'authenticated'
+  AuthController: {
+    '*': false
+  },
+  TallerController: {
+    '*': false,
+    'index': true,
+    'find': true
+  },
+  NodoController: {
+    '*': false,
+    'getNodos' : true
+  },
+  PersonaController: {
+    'find' : false,
+    'registro': true,
+    'create': true
+  }
   /*
 	// Here's an example of adding some policies to a controller
 	RabbitController: {
