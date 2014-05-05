@@ -13,7 +13,7 @@ module.exports = {
       type: 'STRING'
     },
     correo : {
-      type: 'STRING',
+      type: 'email',
       required: true,
       unique: true
     },

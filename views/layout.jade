@@ -29,9 +29,13 @@ head
             li
               a(href='/faq') Preguntas frecuentes
             li
-              a(href='/persona/create') Registrarse
+              a(href='/persona/registro') Registrarse
             li
               a(href='/login') Autenticarse
+          if (req.session.nombre)
+            p.navbar-text.navbar-right Registrado como
+              a.navbar-link(href='/logout')  #{req.session.nombre}
+              span , click para salir
         //            /.navbar-collapse
       //          /.container
     block content

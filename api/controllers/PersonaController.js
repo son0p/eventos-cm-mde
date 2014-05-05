@@ -25,10 +25,18 @@ module.exports = {
   //   });
   // },
   registro : function(req, res) {
-    if(req.isAuthenticated()) res.redirect('/taller');
-    var nodos = res.locals.nodos;
-    sails.log.verbose(nodos);
-    res.view('persona/registro', { nodos : nodos });
+    if(req.isAuthenticated()){
+      Persona.findOne(req.session.passport.user).exec(function(err, persona){
+        sails.log.verbose("Nombre : " + persona.nombre);
+        req.session.nombre = persona.nombre;
+        req.flash('message', 'Bienvenido a las casas de la música');
+        res.redirect('/taller');
+      });
+    } else {
+      var nodos = res.locals.nodos;
+      sails.log.verbose(nodos);
+      res.view('persona/registro', { nodos : nodos });
+    }
   },
   create : function(req, res) {
     Persona.create(req.body).populate('inscritoEnNodo').exec(function(err, persona){
@@ -43,6 +51,7 @@ module.exports = {
       });
       //Log user in
       req.session.passport.user = persona.id;
+      req.session.nombre = persona.nombre;
       req.session.authenticated = true;
       sails.log.verbose(req.session);
 

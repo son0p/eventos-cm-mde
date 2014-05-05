@@ -7,6 +7,7 @@
 
 module.exports = {
 	index : function(req, res) {
+    sails.log.verbose(req.session);
     Taller.find().exec(function(err, talleres) {
       _.each(talleres, function(taller) {
         var descripcion = taller.descripcion;

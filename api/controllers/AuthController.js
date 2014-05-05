@@ -31,6 +31,11 @@ module.exports = {
     sails.log.verbose(req.originalUrl);
     req.session.returnTo = req.baseUrl;
     req.logout();
-    res.send('logout successful');
+    req.session.nombre = "";
+    req.flash('message','Estás afuera');
+    res.redirect('/taller');
+  },
+  faq : function(req, res){
+    res.view('auth/faq');
   }
 };

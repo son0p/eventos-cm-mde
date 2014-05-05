@@ -22,7 +22,7 @@ module.exports.policies = {
    */
   '*': false,//'authenticated'
   AuthController: {
-    '*': false
+    '*': true
   },
   TallerController: {
     '*': false,
