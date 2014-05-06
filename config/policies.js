@@ -34,7 +34,7 @@ module.exports.policies = {
     'getNodos' : true
   },
   PersonaController: {
-    'find' : false,
+    'find' : true,
     'registro': true,
     'create': true
   }
