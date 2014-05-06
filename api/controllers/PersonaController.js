@@ -6,6 +6,11 @@
  */
 
 module.exports = {
+  find : function(req, res) {
+    Persona.find().exec(function(err, personas) {
+      res.view('persona/inscritos', {personas : personas});
+    });
+  },
 	// inscripcion : function(req, res) {
   //   sails.log.verbose(req.body);
   //   Persona.findOne(req.session.passport.user).populate('inscritoEn').exec(function(err, persona){
