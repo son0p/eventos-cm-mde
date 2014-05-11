@@ -6,15 +6,13 @@ block content
     .row
       .panel.panel-default
         .panel-heading Personas inscritas
-        table.table
+        table.table.table-striped
           thead: tbody
             tr
-              td Nombre
-              td Correo electrónico
-              td Institución educativa
+              th Nombre
+              th Institución educativa
           tbody
             each persona in personas
               tr
                 td #{persona.nombre}
-                td #{persona.correo}
                 td #{persona.institucionEducativa}
