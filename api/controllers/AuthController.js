@@ -16,12 +16,17 @@ module.exports = {
   process: function(req, res){
     passport.authenticate('local', function(err, user, info){
       if( (err) || (!user)) {
+        sails.log.verbose(err);
         return res.redirect('/login');
         //return;
       }
       req.logIn(user, function(err){
-        if(err) res.redirect('/login');
+        if(err) {
+          res.redirect('/login');
+          sails.log.verbose(err);
+        }
         //req.session.returnTo es asignada en api/policies/authenticated.js
+        req.session.returnTo = '/';
         return res.redirect(req.session.returnTo);
       });
       sails.log.verbose(req.session);
