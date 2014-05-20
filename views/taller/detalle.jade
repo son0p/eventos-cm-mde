@@ -10,7 +10,6 @@ block content
         .col-lg-8
           h1= taller.nombre
           p= taller.descripcion
-          p Fecha: #{taller.fecha}
       //
         .row
           form(method="POST", action='/taller/' + taller.id )

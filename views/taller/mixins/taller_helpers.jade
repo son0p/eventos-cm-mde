@@ -5,7 +5,6 @@ mixin taller_cuadro(taller)
       .caption
         h3= taller.nombre
         p= taller.descripcion
-        p Fecha: #{taller.fecha}
         p
           // a.btn.btn-primary(href='#') Buy Now!
           a.btn.btn-default(href='/taller/'+taller.id) Ver detalles
