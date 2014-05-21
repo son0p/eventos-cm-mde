@@ -10,14 +10,14 @@ block content
           thead: tbody
             tr
               th Nombre
-              th Correo
+              //th Correo
               th Institución educativa
               th Nodo
           tbody
             each persona in personas
               tr
                 td #{persona.nombre}
-                td #{persona.correo}
+                //td #{persona.correo}
                 td #{persona.institucionEducativa}
                 each nodo in persona.inscritoEnNodo
                   td #{nodo.nombre}
