@@ -26,6 +26,8 @@ module.exports.policies = {
   },
   TallerController: {
     '*': false,
+    'create': true,
+    'create_process': true,
     'index': true,
     'find': true
   },

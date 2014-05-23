@@ -11,12 +11,16 @@ module.exports = {
     nombre : { type : 'STRING' },
     descripcion : { type : 'STRING' },
     requerimientos : { type : 'STRING' },
+    publicar : {
+      type : 'BOOLEAN',
+      defaultsTo : 'true'
+    },
     cuposDisponibles : {
       type : 'INTEGER',
       defaultsTo : '30'
       },
     lugar : { type : 'STRING' },
-    fecha : { type : 'STRING' },
+    fecha : { type : 'DATE' },
     hora : { type : 'STRING' },
     contacto : { type : 'STRING' },
     urlImagen : { type : 'STRING' },

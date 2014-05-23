@@ -43,5 +43,29 @@ module.exports = {
       // ¿Cómo pasar la información del taller acá?
       res.view('/taller/'+req.params.id);
     });
+  },
+  create : function(req, res) {
+    res.view('taller/create');
+  },
+  create_process : function(req, res) {
+    var TallerObj = {
+      nombre: req.param('nombre'),
+      descripcion: req.param('descripcion'),
+      lugar: req.param('lugar'),
+      fecha: req.param('fecha'),
+      hora: req.param('hora'),
+      requerimientos: req.param('requerimientos')
+    };
+    sails.log.verbose(TallerObj);
+    Taller.create(TallerObj, function(err, taller){
+      sails.log.verbose("taller creado: " + taller);
+      if (err) {
+        res.send(err);
+      }
+      taller.save(function(err, taller) {
+        if (err) return next(err);
+        return res.redirect('/taller');
+      });
+    });
   }
 };

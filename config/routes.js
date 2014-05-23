@@ -29,6 +29,8 @@ module.exports.routes = {
   '/': ['NodoController.getNodos','PersonaController.registro'],
   '/persona/registro': ['NodoController.getNodos','PersonaController.registro'],
     // Custom routes here...
+  'get /taller/create': 'TallerController.create',
+  'post /taller/create': 'TallerController.create_process',
   'get /taller/:id': 'TallerController.find',
   // {
   //   controller : 'taller',

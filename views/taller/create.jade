@@ -1,0 +1,47 @@
+extends ../layout
+//include ../mixins/form-helpers
+
+block content
+  .container
+    .jumbotron.hero-spacer
+      form(role="form", method="POST", action="/taller/create")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="nombre") Nombre del taller:
+              input.form-control(type="text", value="", name="nombre", placeholder="nombre")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="descripcion") Descripción:
+              input.form-control(type="text", value="", name="descripcion", placeholder="descripcion")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="lugar") Lugar
+              input.form-control(type="text", value="", name="lugar", placeholder="lugar")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="fecha") Fecha (AAAA/MM/DD):
+              input.form-control(type="text", value="", name="fecha", placeholder="AAAA/MM/DD")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="hora") Hora:
+              input.form-control(type="text", value="", name="hora", placeholder="hora")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="requerimientos") Requerimientos
+              input.form-control(type="text", value="", name="requerimientos", placeholder="requerimientos")
+          br
+          .row
+            .col-md-6
+              input.btn.btn-lg.btn-danger.btn-block(type="button", onclick="javascript:history.back()", value="Cancel")
+            .col-md-6
+              input.btn.btn-lg.btn-primary.btn-block(type="submit", value="Save")
+          br
+          .row
+            .col-md-12
+              input.btn.btn-lg.btn-primary.btn-block(type="button", onclick="javascript:window.location = \"/taller\"" value="¿Ya está registrado?")

@@ -46,6 +46,8 @@ module.exports = {
   create : function(req, res) {
     Persona.create(req.body).populate('inscritoEnNodo').exec(function(err, persona){
       if (err) {
+        sails.log.verbose(err);
+        req.flash('message', 'Error en la autenticación');
         return res.send(err);
       }
       Nodo.findOne({nombre : req.body.nodos}).populate('inscritos').exec(function (err, nodo){
