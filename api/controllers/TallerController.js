@@ -4,6 +4,14 @@
  * @description ::
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+function prettyDate(dateString){
+    var date = new Date(dateString);
+    var d = date.getDate();
+    var monthNames = [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ];
+    var m = monthNames[date.getMonth()];
+    var y = date.getFullYear();
+    return d+' '+m+' '+y;
+}
 
 module.exports = {
 	index : function(req, res) {
@@ -13,6 +21,7 @@ module.exports = {
         var descripcion = taller.descripcion;
         sails.log.verbose(typeof taller.descripcion);
         if(_.isString(taller.descripcion)) taller.descripcion = descripcion.substr(0,150) + " ...";
+        taller.fecha = prettyDate(taller.fecha);
       });
       //sails.log.verbose(talleres);
       res.view({talleres: talleres });
@@ -20,6 +29,7 @@ module.exports = {
   },
   find : function(req, res) {
     Taller.findOneById(req.param('id')).exec(function(err, taller) {
+      taller.fecha = prettyDate(taller.fecha);
       res.view('taller/detalle',{taller: taller });
       });
   },
