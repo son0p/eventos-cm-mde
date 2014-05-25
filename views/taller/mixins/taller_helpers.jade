@@ -4,6 +4,8 @@ mixin taller_cuadro(taller)
       img(src='/images/logoCasasDeLaMusica500x800.png', alt='')
       .caption
         h3= taller.nombre
+        p= taller.lugar
+        p= taller.fecha
         p= taller.descripcion
         p
           // a.btn.btn-primary(href='#') Buy Now!
