@@ -11,24 +11,6 @@ module.exports = {
       res.view('persona/inscritos', {personas : personas});
     });
   },
-	// inscripcion : function(req, res) {
-  //   sails.log.verbose(req.body);
-  //   Persona.findOne(req.session.passport.user).populate('inscritoEn').exec(function(err, persona){
-  //     if (err) { res.send('error'); return; }
-  //     var yaInscrito = false;
-  //     persona.inscritoEn.forEach(function (taller, indice) {
-  //       sails.log.verbose("Entra for each " + indice + ": " + taller.id + " | " + req.params.id);
-  //       if(taller.id == req.params.id) { yaInscrito = true; }
-  //     });
-  //     if (!yaInscrito) {
-  //       persona.inscritoEn.add(req.params.id);
-  //       persona.save(sails.log.verbose);
-  //     }
-  //     sails.log.verbose(req.session.passport.user);
-  //     // ¿Cómo pasar la información del taller acá?
-  //     res.redirect('/taller/'+req.params.id);
-  //   });
-  // },
   registro : function(req, res) {
     if(req.isAuthenticated()){
       Persona.findOne(req.session.passport.user).exec(function(err, persona){
@@ -46,9 +28,14 @@ module.exports = {
   create : function(req, res) {
     Persona.create(req.body).populate('inscritoEnNodo').exec(function(err, persona){
       if (err) {
-        sails.log.verbose(err);
+        /*
+        {error: "E_VALIDATION", model: "Persona", summary: "1 attribute is invalid", status: 400, invalidAttributes: Object}
+        {error: "E_UNKNOWN", summary: "Encountered an unexpected error", status: 500, raw: "MongoError: insertDocument :: caused by :: 11000 E11000 duplicate key error index: eventos_em.persona.$correo_1  dup key: { : "juan@gmail.com" }"} */
+        sails.log.verbose(err.invalidAttributes.correo, null, 2);
+//        JSON.stringify(e.invalidAttributes.correo,null,2))
+        var campos = [''];
         req.flash('message', 'Error en la autenticación');
-        return res.send(err);
+        return res.send(err.invalidAttributes);
       }
       Nodo.findOne({nombre : req.body.nodos}).populate('inscritos').exec(function (err, nodo){
         nodo.inscritos.add(persona.id);
