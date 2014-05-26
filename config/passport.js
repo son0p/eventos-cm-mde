@@ -19,7 +19,7 @@ passport.deserializeUser(function(correo, done) {
 });
 
 passport.use(new LocalStrategy(function(correo, telefonos, done) {
-  Persona.findByCorreo(correo).done(function(err, user) {
+  Persona.findByCorreo(correo).exec(function(err, user) {
     if(err) { return done(null, err);}
     if(!user || user.length < 1) { return done(null, false, { message: 'Correo electrónico incorrecto' }); }
     if(telefonos != user[0].telefonos) { return done(null, false, { message: 'Teléfono inválido' }); }
