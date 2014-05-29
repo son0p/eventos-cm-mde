@@ -10,6 +10,8 @@ head
     //        Bootstrap core CSS
     link(href='/styles/bootstrap.css', rel='stylesheet')
     link(href='/styles/bootstrap-select.css', rel='stylesheet')
+    link(href='/styles/bootstrap-tagsinput.css', rel='stylesheet')
+    link(href='/styles/datepicker3.css', rel='stylesheet')
     //        Custom CSS for the 'Heroic Features' Template
     link(href='/styles/heroic-features.css', rel='stylesheet')
 
@@ -52,7 +54,15 @@ head
     script(type='text/javascript', src='/js/jquery.js')
     script(type='text/javascript', src='/js/bootstrap.js')
     script(type='text/javascript', src='/js/bootstrap-select.js')
+    script(type='text/javascript', src='/js/bootstrap-tagsinput.js')
+    script(type='text/javascript', src='/js/bootstrap-datepicker.js')
+    script(type='text/javascript', src='/js/locales/bootstrap-datepicker.es.js')
+    script(type='text/javascript', src='/js/typeahead.bundle.js')
     script(type='text/javascript', src='/js/underscore-min.js')
     script(type="text/javascript")
       | $('.selectpicker').selectpicker();
+      | $('#sandbox-container input').datepicker({
+      | format: "yyyy/mm/dd",
+      | language: 'es'
+      | });
     script(type="text/javascript", src='/js/app.js')

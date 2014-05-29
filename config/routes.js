@@ -28,6 +28,8 @@ module.exports.routes = {
   // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
   '/': ['NodoController.getNodos','PersonaController.registro'],
   '/persona/registro': ['NodoController.getNodos','PersonaController.registro'],
+  '/persona/edit/:id': ['NodoController.getNodos','PersonaController.edit'],
+  '/persona/conocerte/:id': ['NodoController.getNodos','PersonaController.conocerte'],
     // Custom routes here...
   'get /taller/create': 'TallerController.create',
   'post /taller/create': 'TallerController.create_process',

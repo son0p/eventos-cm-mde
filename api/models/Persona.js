@@ -27,6 +27,21 @@ module.exports = {
       collection : 'Nodo',
       via : 'inscritos',
       dominant : 'true'
+    },
+    fechaNacimiento : {
+      type : 'DATE'
+    },
+    estudiadoMusicaAntes : {
+      type : 'BOOLEAN'
+    },
+    sabeTocarInstrumento : {
+      type : 'BOOLEAN'
+    },
+    generosMusicales : {
+      type : 'ARRAY'
+    },
+    instrumentoDePreferencia : {
+      type : 'STRING'
     }
   },
   /**

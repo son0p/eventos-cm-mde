@@ -21,7 +21,7 @@ module.exports = {
       });
     } else {
       var nodos = res.locals.nodos;
-      sails.log.verbose(nodos);
+      //sails.log.verbose(nodos);
       res.view('persona/registro', { nodos : nodos });
     }
   },
@@ -49,5 +49,50 @@ module.exports = {
         return res.redirect('/taller');
       });
     });
+  },
+  // render the conocerte view
+  conocerte: function(req, res, next) {
+    // Find the user from the id passed in via params
+    Persona.findOne(req.param('id')).populate('inscritoEnNodo').exec(function(err, persona) {
+      if (err) return next(err);
+      if (!persona) return next('User doesn\'t exist.');
+      // res.send(persona);
+      var nodos = res.locals.nodos;
+      res.view({ nodos: nodos , persona : persona, id: req.param('id') });
+    });
+  },
+    // render the edit view (e.g. /views/edit.ejs)
+  edit: function(req, res, next) {
+
+    // Find the user from the id passed in via params
+    Persona.findOne(req.param('id')).populate('inscritoEnNodo').exec(function(err, persona) {
+      if (err) return next(err);
+      if (!persona) return next('User doesn\'t exist.');
+      //res.send(persona);
+      var nodos = res.locals.nodos;
+      res.view({ nodos: nodos , persona : persona, id: req.param('id') });
+    });
+  },
+  // process the info from edit view
+  update: function(req, res, next) {
+    sails.log.verbose(req.param('id'));
+    sails.log.verbose(req.body);
+    res.send(req.body);
+    Persona.update(req.body.id, req.body).exec(function(err,upd) {
+      sails.log.verbose(upd);
+      if (err) {
+        sails.log.verbose("No se logró actualizar");
+        return;
+      }
+      sails.log.verbose("Actualizado");
+    });
+
+    // User.update(req.param('id'), userObj, function userUpdated(err) {
+    //   if (err) {
+    //     return res.redirect('/user/edit/' + req.param('id'));
+    //   }
+
+    //   res.redirect('/user/show/' + req.param('id'));
+    // });
   }
 };

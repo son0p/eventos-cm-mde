@@ -38,7 +38,10 @@ module.exports.policies = {
   PersonaController: {
     'find' : true,
     'registro': true,
-    'create': true
+    'create': true,
+    'edit': true,
+    'conocerte': true,
+    'update': true
   }
   /*
 	// Here's an example of adding some policies to a controller

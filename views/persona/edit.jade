@@ -1,0 +1,84 @@
+extends ../layout
+//include ../mixins/form-helpers
+
+block content
+  .container
+    .jumbotron.hero-spacer
+      form(role="form", method="POST", action="/persona/update", name = "persona")
+        .row
+          fieldset
+            .col-md-12.hide
+              input.form-control(type="text", value="#{id}", name="id", placeholder="id")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="nombre") Nombre:
+              input.form-control(type="text", value="#{persona.nombre}", name="nombre", placeholder="nombre")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="telefonos") Teléfono:
+              input.form-control(type="text", value="#{persona.telefonos}", name="telefonos", placeholder="telefonos")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="correo") Correo electrónico
+              input.form-control(type="text", value="#{persona.correo}", name="correo", placeholder="correo")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="institucionEducativa") Institución Educativa
+              input.form-control(type="text", value="#{persona.institucionEducativa}", name="institucionEducativa", placeholder="institucionEducativa")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="nodos") Nodo más cercana a su lugar de residencia
+              select.selectpicker.col-md-12(name="nodos", value="", data-live-search="true", data-container="body")
+                - each nodo in nodos
+                  - if(nodo.nombre == persona.inscritoEnNodo[0].nombre)
+                    option(selected="true") #{nodo.nombre}
+                  - else
+                    option #{nodo.nombre}
+
+        .row
+          fieldset
+            .col-md-12#sandbox-container
+              label.control-label(for="fechaNacimiento") ¿En qué año naciste?
+                input.form-control(type="text", value="#{persona.fechaNacimiento}", name="fechaNacimiento", placeholder="fechaNacimiento")
+        .row
+          fieldset
+            .col-md-12
+              label.checkbox(for="estudiadoMusicaAntes") ¿Has estudiado música antes?
+                - if(persona.estudiadoMusicaAntes)
+                  input(type="checkbox", value="", name="estudiadoMusicaAntes", placeholder="estudiadoMusicaAntes", checked = "checked")
+                - else
+                  input(type="checkbox", value="", name="estudiadoMusicaAntes", placeholder="estudiadoMusicaAntes")
+        .row
+          fieldset
+            .col-md-12
+              label.checkbox(for="sabeTocarInstrumento") ¿Sabes tocar algún instrumento?
+                - if (persona.sabeTocarInstrumento)
+                  input(type="checkbox", value="", name="sabeTocarInstrumento", placeholder="sabeTocarInstrumento", checked = "checked")
+                - else
+                  input(type="checkbox", value="", name="sabeTocarInstrumento", placeholder="sabeTocarInstrumento")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="generosMusicales") ¿Qué géneros musicales te gustan más?
+                - if (persona.generosMusicales) var generos = persona.generosMusicales.toString().replace(/\[.*\]/g,'')
+                - else generos = '';
+                input.form-control(type="text", value="#{generos}", name="generosMusicales", placeholder="generosMusicales", data-role="tagsinput")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="instrumentoDePreferencia") ¿Qué instrumento prefieres?
+                - if(persona.instrumentoDePreferencia) var instrumentos = persona.instrumentoDePreferencia.toString().replace(/\[.*\]/g,'')
+                - else instrumentos = '';
+                input.form-control(type="text", value="#{instrumentos}", name="instrumentoDePreferencia", placeholder="instrumentoDePreferencia", data-role="tagsinput")
+
+          br
+          .row
+            .col-md-6
+              input.btn.btn-lg.btn-danger.btn-block(type="button", onclick="javascript:history.back()", value="Cancelar")
+            .col-md-6
+              input.btn.btn-lg.btn-primary.btn-block(value="Guardar", name="editarPersona", type="button")
