@@ -4,6 +4,9 @@ extends ../layout
 block content
   .container
     .jumbotron.hero-spacer
+      .row
+        h4 Edita tus datos personales
+
       form(role="form", method="POST", action="/persona/update", name = "persona")
         .row
           fieldset

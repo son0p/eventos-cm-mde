@@ -35,10 +35,11 @@ head
             li
               a(href='/login') Autenticarse
           if (req.session.nombre)
-            p.navbar-text.navbar-right Registrado como #{req.session.nombre}
-              span   -
-              a.navbar-link(href='/logout')  click aquí para salir
-        //            /.navbar-collapse
+              p.navbar-text.navbar-right
+                a.navbar-link(href='/persona/edit/#{req.session.passport.user}') Registrado como #{req.session.nombre}
+                span   -
+                a.navbar-link(href='/logout')  click aquí para salir
+      //            /.navbar-collapse
       //          /.container
     block content
 

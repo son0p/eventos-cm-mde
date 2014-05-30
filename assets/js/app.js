@@ -58,8 +58,7 @@ $(document).ready(function($) {
           }
         } else
         {
-          console.log(data);
-          //window.location = '/';
+          window.location = '/';
         }
       });
     });

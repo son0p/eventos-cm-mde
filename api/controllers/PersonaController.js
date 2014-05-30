@@ -17,6 +17,9 @@ module.exports = {
         sails.log.verbose("Nombre : " + persona.nombre);
         req.session.nombre = persona.nombre;
         req.flash('message', 'Bienvenido a las casas de la música');
+
+        if(!persona.fechaNacimiento) return res.redirect("/persona/conocerte/"+persona.id);
+
         res.redirect('/taller');
       });
     } else {
