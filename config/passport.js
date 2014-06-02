@@ -7,12 +7,10 @@ passport.serializeUser(function(user, done) {
     done(null, user[0].id);
   } catch (e) {
     sails.log.verbose(e);
-    sails.log.verbose("EXCEPCIÓN EN SERIALIZE");
   }
 });
 
 passport.deserializeUser(function(correo, done) {
-  sails.log.verbose("ENTRÓ A DESERIALIZE");
   Persona.findByCorreo(correo, function(err, user){
     done(err, user);
     });

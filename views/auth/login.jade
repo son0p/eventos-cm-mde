@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   .container: .jumbotron.hero-spacer
-    form(action='/login', method='post')
+    form(action='/login', method='post', name='login')
       .row: fieldset: col-md-12
         label.control-label(for='username') Correo electrónico que registró:
         // ¿Cómo usar en name='correo' que es la variable que esto comprobando?
@@ -12,7 +12,7 @@ block content
         input.form-control(type='text', name='password')
       br
       .row
-        input.btn.btn-primary.btn-block(type='submit', value='Ingresar')
+        input.btn.btn-primary.btn-block(type='button', value='Ingresar', name='submitLogin')
       br
       .row
         a.btn.btn-primary.btn-block(href='/persona/registro') Registrarse

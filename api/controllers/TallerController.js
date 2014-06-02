@@ -64,18 +64,48 @@ module.exports = {
       lugar: req.param('lugar'),
       fecha: req.param('fecha'),
       hora: req.param('hora'),
-      requerimientos: req.param('requerimientos')
+      requerimientos: req.param('requerimientos'),
+      publicar : req.param('publicar')
     };
     sails.log.verbose(TallerObj);
     Taller.create(TallerObj, function(err, taller){
       sails.log.verbose("taller creado: " + taller);
       if (err) {
-        res.send(err);
+        res.send({ type: 'error', message : 'Ocurrió un error creando el taller'});
       }
       taller.save(function(err, taller) {
         if (err) return next(err);
-        return res.redirect('/taller');
+        return res.send({ type: 'success', message : 'El taller ha sido creado exitosamente'});
       });
+    });
+  },
+  edit : function(req, res) {
+    Taller.findOne(req.param('id')).exec(function (err, taller) {
+      if (err) return res.send({ type: 'error', message : 'El taller no existe'});
+      if (!taller) return res.send({ type: 'error', message : 'El taller no existe'});
+      return res.view('taller/edit', { taller : taller, id : req.param('id') });
+    });
+  },
+  edit_process : function(req, res) {
+    sails.log.verbose(req.body.id);
+    var TallerObj = {
+      id: req.param('id'),
+      nombre: req.param('nombre'),
+      descripcion: req.param('descripcion'),
+      lugar: req.param('lugar'),
+      fecha: req.param('fecha'),
+      hora: req.param('hora'),
+      requerimientos: req.param('requerimientos'),
+      publicar : req.param('publicar')
+    };
+    sails.log.verbose(TallerObj);
+    Taller.update(TallerObj.id, TallerObj).exec(function(err, upd){
+      sails.log.verbose("taller editado: " + upd);
+      if (err) {
+        res.send({ type: 'error', message : 'Error actualizando taller'});
+        return;
+      }
+      res.send({ type: 'success', message : 'Taller actualizando exitosamente'});
     });
   }
 };

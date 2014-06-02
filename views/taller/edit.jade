@@ -1,0 +1,60 @@
+extends ../layout
+//include ../mixins/form-helpers
+
+block content
+  .container
+    .jumbotron.hero-spacer
+      form(role="form", method="POST", action="/taller/create", name="taller")
+        .row
+          fieldset
+            .col-md-12.hide
+              p #{id}
+              input.form-control(type="text", value="#{id}", name="id", placeholder="id")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="nombre") Nombre del taller:
+              input.form-control(type="text", value="#{taller.nombre}", name="nombre", placeholder="nombre")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="descripcion") Descripción:
+              textarea.form-control(type="text", value="", name="descripcion", placeholder="descripcion") #{taller.descripcion}
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="lugar") Lugar
+              input.form-control(type="text", value="#{taller.lugar}", name="lugar", placeholder="lugar")
+        .row
+          fieldset
+            .col-md-12#sandbox-container
+              label.control-label(for="fecha") Fecha (AAAA/MM/DD):
+              input.form-control(type="text", value="#{taller.fecha}", name="fecha", placeholder="AAAA/MM/DD")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="hora") Hora:
+              input.form-control(type="text", value="#{taller.hora}", name="hora", placeholder="hora")
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="requerimientos") Requerimientos
+              input.form-control(type="text", value="#{taller.requerimientos}", name="requerimientos", placeholder="requerimientos")
+        .row
+          fieldset
+            .col-md-12
+              label.checkbox(for="publicar") ¿Desea publicar este contenido?
+                - if (taller.publicar)
+                  input(type="checkbox", value="", name="publicar", placeholder="publicar", checked = "checked")
+                - else
+                  input(type="checkbox", value="", name="publicar", placeholder="publicar")
+        br
+        .row
+          .col-md-6
+            input.btn.btn-lg.btn-danger.btn-block(type="button", onclick="javascript:history.back()", value="Cancelar")
+          .col-md-6
+            input.btn.btn-lg.btn-primary.btn-block(type="button", value="Guardar", name="editarTaller")
+        br
+        .row
+          .col-md-12
+            input.btn.btn-lg.btn-primary.btn-block(type="button", onclick="javascript:window.location = \"/taller\"" value="¿Ya está registrado?")

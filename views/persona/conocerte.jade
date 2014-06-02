@@ -71,14 +71,14 @@ block content
               label.control-label(for="generosMusicales") ¿Qué géneros musicales te gustan más?
                 - if (persona.generosMusicales) var generos = persona.generosMusicales.toString().replace(/\[.*\]/g,'')
                 - else generos = '';
-                input.form-control(type="text", value="#{generos}", name="generosMusicales", placeholder="generosMusicales", data-role="tagsinput")
+                input.form-control(type="text", value="#{generos}", name="generosMusicales", placeholder="presione enter para ingresar su género", data-role="tagsinput")
         .row
           fieldset
             .col-md-12
               label.control-label(for="instrumentoDePreferencia") ¿Qué instrumento prefieres?
                 - if(persona.instrumentoDePreferencia) var instrumentos = persona.instrumentoDePreferencia.toString().replace(/\[.*\]/g,'')
                 - else instrumentos = '';
-                input.form-control(type="text", value="#{instrumentos}", name="instrumentoDePreferencia", placeholder="instrumentoDePreferencia", data-role="tagsinput")
+                input.form-control(type="text", value="#{instrumentos}", name="instrumentoDePreferencia", placeholder="presione enter para ingresar instrumento", data-role="tagsinput")
           br
           .row
             .col-md-6

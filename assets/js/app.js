@@ -1,6 +1,9 @@
 $(document).ready(function($) {
   // Inicializar componentes
   new PersonaForm();
+  new LoginForm();
+  new TallerForm();
+
   // Definir formulario para crear persona
   function PersonaForm () {
     function getData() {
@@ -66,22 +69,73 @@ $(document).ready(function($) {
   // Definir formulario para crear talleres
   function TallerForm () {
     function getData() {
-      var fields = ['telefonos','correo'];
+      var fields = ['id','nombre','descripcion','lugar','fecha','hora','requerimientos','publicar'];
       var data = {};
       fields.forEach(function(f) {
-        var value= $("form[name='persona'] input[name="+f+"]").val();
+        if(f == 'publicar') value = $("form[name='taller'] input[name="+f+"]").is(":checked");
+        else if(f == 'descripcion') value = $("form[name='taller'] textarea[name="+f+"]").val();
+        else var value= $("form[name='taller'] input[name="+f+"]").val();
         data[f] = value;
       });
       return data;
     }
-    // $("form[name='persona'] input[name='guardarPersona']").click(function(e){
-    //   $.post("/persona/create", getData(), function(data) {
-    //     console.log(data);
-    //     Object.keys(data).forEach(function(v){
-    //       if(data[v][0].rule == "email") console.log("el correo está mal");
-    //     });
-    //   });
-    // });
+    $("form[name='taller'] input[name='crearTaller']").click(function(e){
+      console.log(getData());
+    $.post("/taller/create", getData(), function(data) {
+        console.log(data);
+      switch(data.type) {
+      case 'error' :
+        alert(data.message);
+        break;
+      case 'success' :
+        window.location = '/';
+        break;
+      }
+      });
+    });
+
+    $("form[name='taller'] input[name='editarTaller']").click(function(e){
+      console.log(getData());
+    $.post("/taller/edit", getData(), function(data) {
+        console.log(data);
+      switch(data.type) {
+      case 'error' :
+        alert(data.message);
+        break;
+      case 'success' :
+        window.location = '/';
+        break;
+      }
+    });
+    });
+  }
+
+  // Definir formulario para authenticación
+  function LoginForm () {
+    function getData() {
+      var fields = ['username','password'];
+      var data = {};
+      fields.forEach(function(f) {
+        var value= $("form[name='login'] input[name="+f+"]").val();
+        data[f] = value;
+      });
+      return data;
+    }
+    $("form[name='login'] input[name='submitLogin']").click(function(e){
+      $.post("/login", getData(), function(data) {
+        switch(data.type) {
+        case 'error' :
+          alert(data.message);
+          break;
+        case 'success' :
+          window.location = '/';
+          break;
+        }
+          // Object.keys(data).forEach(function(v){
+        //   if(data[v][0].rule == "email") console.log("el correo está mal");
+        // });
+      });
+    });
   }
 
 });

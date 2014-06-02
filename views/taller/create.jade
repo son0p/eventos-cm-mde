@@ -4,7 +4,7 @@ extends ../layout
 block content
   .container
     .jumbotron.hero-spacer
-      form(role="form", method="POST", action="/taller/create")
+      form(role="form", method="POST", action="/taller/create", name="taller")
         .row
           fieldset
             .col-md-12
@@ -14,7 +14,7 @@ block content
           fieldset
             .col-md-12
               label.control-label(for="descripcion") Descripción:
-              input.form-control(type="text", value="", name="descripcion", placeholder="descripcion")
+              textarea.form-control(type="text", value="", name="descripcion", placeholder="descripcion")
         .row
           fieldset
             .col-md-12
@@ -35,18 +35,17 @@ block content
             .col-md-12
               label.control-label(for="requerimientos") Requerimientos
               input.form-control(type="text", value="", name="requerimientos", placeholder="requerimientos")
-        //
-          .row
-            fieldset
-              .col-md-12
-                label.control-label(for="publicar") ¿Desea publicar este contenido?
-                input.form-control(type="checkbox", value="", name="publicar", placeholder="publicar")
+        .row
+          fieldset
+            .col-md-12
+              label.checkbox(for="publicar") ¿Desea publicar este contenido?
+                input(type="checkbox", value="", name="publicar", placeholder="publicar")
         br
         .row
           .col-md-6
             input.btn.btn-lg.btn-danger.btn-block(type="button", onclick="javascript:history.back()", value="Cancel")
           .col-md-6
-            input.btn.btn-lg.btn-primary.btn-block(type="submit", value="Save")
+            input.btn.btn-lg.btn-primary.btn-block(type="button", value="Save", name="crearTaller")
         br
         .row
           .col-md-12

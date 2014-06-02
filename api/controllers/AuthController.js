@@ -16,18 +16,19 @@ module.exports = {
   process: function(req, res){
     passport.authenticate('local', function(err, user, info){
       if( (err) || (!user)) {
+        sails.log.verbose(info);
         sails.log.verbose(err);
-        return res.redirect('/login');
+        return res.send({ type: 'error', message : 'Ha ocurrido un error en la autenticación, verifique que sus datos sean correctos '});
         //return;
       }
       req.logIn(user, function(err){
         if(err) {
-          res.redirect('/login');
+          return res.send({ type: 'error', message : 'Ha ocurrido un error en la autenticación, verifique que sus datos sean correctos '});
           sails.log.verbose(err);
         }
         //req.session.returnTo es asignada en api/policies/authenticated.js
         req.session.returnTo = '/';
-        return res.redirect(req.session.returnTo);
+        return res.send({ type: 'success', message : 'Se ha autenticado exitosamente, ¡bienvenido!'});
       });
       sails.log.verbose(req.session);
     })(req, res);

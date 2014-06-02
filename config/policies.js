@@ -26,8 +26,10 @@ module.exports.policies = {
   },
   TallerController: {
     '*': false,
-    'create': true,
-    'create_process': true,
+    'create': 'authenticated',
+    'create_process': 'authenticated',
+    'edit': 'authenticated',
+    'edit_process': 'authenticated',
     'index': true,
     'find': true
   },
@@ -39,9 +41,9 @@ module.exports.policies = {
     'find' : true,
     'registro': true,
     'create': true,
-    'edit': true,
-    'conocerte': true,
-    'update': true
+    'edit': 'authenticated',
+    'conocerte': 'authenticated',
+    'update': 'authenticated'
   }
   /*
 	// Here's an example of adding some policies to a controller
