@@ -10,19 +10,16 @@ block content
           thead: tbody
             tr
               th Nombre
-              th Correo
+              //th Correo
               th Institución educativa
               th Nodo
-              th Fecha inscripción
+              //th Fecha inscripción
           tbody
             each persona in personas
               tr
                 td #{persona.nombre}
-                td #{persona.correo}
+                //td #{persona.correo}
                 td #{persona.institucionEducativa}
-                - if (persona.inscritoEnNodo != "")
-                  - each nodo in persona.inscritoEnNodo
-                    td #{nodo.nombre}
-                - else
-                  td
-                td #{persona.createdAt}
+                each nodo in persona.inscritoEnNodo
+                  td #{nodo.nombre}
+                //td #{persona.createdAt}
