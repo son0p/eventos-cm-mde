@@ -78,7 +78,7 @@ module.exports = {
 
         nodemailer.send({
           name: 'Casas de Música - Medellín',
-          from: 'casas@medellinvivelamusica.co',
+          from: 'casas@medellinvivelamusica.com',
           to: persona.correo,
           subject: 'Registro exitoso. ¡ Bienvenido a las Casas de Música de Medellín',
           messageHtml: "<h2>¡Gracias por diligenciar el formato de inscripción y animarte a vivir la Música con nosotros!</h2> <p>Tenemos una activa agenda de talleres y eventos que puedes seguir consultando <a href=\'http://mi.medellinvivelamusica.com/taller\'> aquí </a> <p>Estamos en una etapa de trabajo intenso para crear un lugar de encuento digital donde confluya la información sobre todas las actividades de las Casas de Música de Medellín </p> <p> Gracias por tu comprensión. </p>   "

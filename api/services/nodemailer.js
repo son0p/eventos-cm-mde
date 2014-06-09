@@ -10,11 +10,13 @@ module.exports = {
 
     /** sets up the modemailer smtp transport */
     var transport = nodemailer.createTransport("SMTP", {
-      service: 'Gmail',
+      // service: 'Gmail',
+      host: sails.config.nodemailer.host,
+      //debug: true,
       auth: {
-          user: "casasdemusica.mde@gmail.com",
-          pass: "cantoalegre"
-      }
+        user: sails.config.nodemailer.user,
+        pass: sails.config.nodemailer.pass
+        }
     });
 
     /** sets up the mail options, from and such like that **/
