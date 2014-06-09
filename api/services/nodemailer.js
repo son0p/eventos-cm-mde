@@ -9,10 +9,12 @@ module.exports = {
   send: function(email, cb){
 
     /** sets up the modemailer smtp transport */
+    // Debug a través de telnet http://technet.microsoft.com/en-us/library/aa995718(v=exchg.65).aspx
+    // base64 encoder http://www.motobit.com/util/base64-decoder-encoder.asp
     var transport = nodemailer.createTransport("SMTP", {
-      // service: 'Gmail',
-      host: sails.config.nodemailer.host,
-      //debug: true,
+      service: 'Gmail',
+      //host: sails.config.nodemailer.host,
+      debug: true,
       auth: {
         user: sails.config.nodemailer.user,
         pass: sails.config.nodemailer.pass
