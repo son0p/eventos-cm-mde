@@ -4,10 +4,21 @@
  * @description ::
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+function prettyDate(dateString){
+    var date = new Date(dateString);
+    var d = date.getDate();
+    var monthNames = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ];
+    var m = monthNames[date.getMonth()];
+    var y = date.getFullYear();
+    return d+' '+m+' '+y;
+}
 
 module.exports = {
   find : function(req, res) {
     Persona.find().populate("inscritoEnNodo").exec(function(err, personas) {
+      _.each(personas, function(persona) {
+        persona.createdAt = prettyDate(persona.createdAt);
+      });
       res.view('persona/inscritos', {personas : personas});
     });
   },
@@ -49,6 +60,32 @@ module.exports = {
         req.session.nombre = persona.nombre;
         req.session.authenticated = true;
         sails.log.verbose(req.session);
+
+        // var emailTemplate = res.render('email/email.ejs', {user: persona}, function(err, list){
+
+        //   nodemailer.send({
+        //     name: 'Casas de Música - Medellín',//persona.nombre,
+        //     from: 'casas@medellinvivelamusica.com',
+        //     to: persona.correo,
+        //     subject: 'Registro exitoso. ¡ Bienvenido a las Casas de Música de Medellín',
+        //     messageHtml: list
+        //   }, function(err, response){
+        //     sails.log.debug('nodemailer sent', err, response);
+        //   });
+        //   res.send(200, persona);
+
+        // });
+
+        nodemailer.send({
+          name: 'Casas de Música - Medellín',
+          from: 'casas@medellinvivelamusica.co',
+          to: persona.correo,
+          subject: 'Registro exitoso. ¡ Bienvenido a las Casas de Música de Medellín',
+          messageHtml: "<h2>¡Gracias por diligenciar el formato de inscripción y animarte a vivir la Música con nosotros!</h2> <p>Tenemos una activa agenda de talleres y eventos que puedes seguir consultando <a href=\'http://mi.medellinvivelamusica.com/taller\'> aquí </a> <p>Estamos en una etapa de trabajo intenso para crear un lugar de encuento digital donde confluya la información sobre todas las actividades de las Casas de Música de Medellín </p> <p> Gracias por tu comprensión. </p>   "
+        }, function(err, response){
+          sails.log.verbose('nodemailer sent', err, response);
+        });
+
         return res.redirect('/taller');
       });
     });
