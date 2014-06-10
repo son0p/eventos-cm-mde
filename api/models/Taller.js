@@ -15,6 +15,10 @@ module.exports = {
       type : 'BOOLEAN',
       defaultsTo : 'true'
     },
+    eventoInterno : {
+      type : 'BOOLEAN',
+      defaultsTo : 'false'
+    },
     cuposDisponibles : {
       type : 'INTEGER',
       defaultsTo : '30'

@@ -17,5 +17,5 @@ block content
             | Adicional a las clases en los nodos tenemos una oferta de talleres, conferencias y otras actividades a las que podrá asistir.
     .row.text-center
       each taller in talleres
-        if taller.publicar
+        if (taller.publicar & !taller.eventoInterno)
          mixin taller_cuadro(taller)

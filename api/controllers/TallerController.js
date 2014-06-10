@@ -65,7 +65,8 @@ module.exports = {
       fecha: req.param('fecha'),
       hora: req.param('hora'),
       requerimientos: req.param('requerimientos'),
-      publicar : req.param('publicar')
+      publicar : req.param('publicar'),
+      eventoInterno : req.param('eventoInterno')
     };
     sails.log.verbose(TallerObj);
     Taller.create(TallerObj, function(err, taller){
@@ -96,14 +97,14 @@ module.exports = {
       fecha: req.param('fecha'),
       hora: req.param('hora'),
       requerimientos: req.param('requerimientos'),
-      publicar : req.param('publicar')
+      publicar : req.param('publicar'),
+      eventoInterno: req.param('eventoInterno')
     };
     sails.log.verbose(TallerObj);
     Taller.update(TallerObj.id, TallerObj).exec(function(err, upd){
       sails.log.verbose("taller editado: " + upd);
       if (err) {
-        res.send({ type: 'error', message : 'Error actualizando taller'});
-        return;
+        return res.send({ type: 'error', message : 'Error actualizando taller'});
       }
       res.send({ type: 'success', message : 'Taller actualizando exitosamente'});
     });

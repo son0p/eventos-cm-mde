@@ -48,6 +48,14 @@ block content
                   input(type="checkbox", value="", name="publicar", placeholder="publicar", checked = "checked")
                 - else
                   input(type="checkbox", value="", name="publicar", placeholder="publicar")
+        .row
+          fieldset
+            .col-md-12
+              label.checkbox(for="eventoInterno") ¿Éste es un evento interno?
+                - if (taller.eventoInterno)
+                  input(type="checkbox", value="", name="eventoInterno", placeholder="eventoInterno", checked = "checked")
+                - else
+                  input(type="checkbox", value="", name="eventoInterno", placeholder="eventoInterno")
         br
         .row
           .col-md-6

@@ -69,10 +69,11 @@ $(document).ready(function($) {
   // Definir formulario para crear talleres
   function TallerForm () {
     function getData() {
-      var fields = ['id','nombre','descripcion','lugar','fecha','hora','requerimientos','publicar'];
+      var fields = ['id','nombre','descripcion','lugar','fecha','hora','requerimientos','publicar','eventoInterno'];
       var data = {};
       fields.forEach(function(f) {
-        if(f == 'publicar') value = $("form[name='taller'] input[name="+f+"]").is(":checked");
+        if(f == 'eventoInterno') value = $("form[name='taller'] input[name="+f+"]").is(":checked");
+        else if(f == 'publicar') value = $("form[name='taller'] input[name="+f+"]").is(":checked");
         else if(f == 'descripcion') value = $("form[name='taller'] textarea[name="+f+"]").val();
         else var value= $("form[name='taller'] input[name="+f+"]").val();
         data[f] = value;
