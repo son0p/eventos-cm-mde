@@ -37,6 +37,7 @@ head
           if (req.session.nombre)
               p.navbar-text.navbar-right
                 a.navbar-link(href='/persona/edit/#{req.session.passport.user}') Registrado como #{req.session.nombre}
+                  img(src='/images/control_settings_panel2.png', height='30', width='30')
                 span   -
                 a.navbar-link(href='/logout')  click aquí para salir
       //            /.navbar-collapse
