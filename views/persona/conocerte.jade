@@ -39,8 +39,11 @@ block content
               label.control-label(for="nodos") Nodo más cercana a su lugar de residencia
               select.selectpicker.col-md-12(name="nodos", value="", data-live-search="true", data-container="body")
                 - each nodo in nodos
-                  - if(nodo.nombre == persona.inscritoEnNodo[0].nombre)
-                    option(selected="true") #{nodo.nombre}
+                  - if(persona.inscritoEnNodo[0])
+                    - if(nodo.nombre == persona.inscritoEnNodo[0].nombre)
+                      option(selected="true") #{nodo.nombre}
+                    - else
+                      option #{nodo.nombre}
                   - else
                     option #{nodo.nombre}
 
