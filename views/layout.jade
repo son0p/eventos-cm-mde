@@ -36,10 +36,15 @@ head
               a(href='/login') Autenticarse
           if (req.session.nombre)
               p.navbar-text.navbar-right
-                a.navbar-link(href='/persona/edit/#{req.session.passport.user}') Registrado como #{req.session.nombre}
-                  img(src='/images/control_settings_panel2.png', height='30', width='30')
-                span   -
-                a.navbar-link(href='/logout')  click aquí para salir
+                button.btn.btn-default.btn-sm(type="button")
+                  a(href='/persona/edit/#{req.session.passport.user}')
+                    span.glyphicon.glyphicon-cog  #{req.session.nombre}
+                span(style="padding: 3px")
+                button.btn.btn-default.btn-sm(type="button")
+                  a(href='/logout')
+                    span.glyphicon.glyphicon-log-out  salir
+
+
       //            /.navbar-collapse
       //          /.container
     block content
