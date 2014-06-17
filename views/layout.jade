@@ -36,13 +36,11 @@ head
               a(href='/login') Autenticarse
           if (req.session.nombre)
               p.navbar-text.navbar-right
-                button.btn.btn-default.btn-sm(type="button")
-                  a(href='/persona/edit/#{req.session.passport.user}')
-                    span.glyphicon.glyphicon-cog  #{req.session.nombre}
+                a.btn.btn-default.btn-sm(type="button", href='/persona/edit/#{req.session.passport.user}')
+                  span.glyphicon.glyphicon-cog  #{req.session.nombre}
                 span(style="padding: 3px")
-                button.btn.btn-default.btn-sm(type="button")
-                  a(href='/logout')
-                    span.glyphicon.glyphicon-log-out  salir
+                a.btn.btn-default.btn-sm(type="button", href='/logout')
+                  span.glyphicon.glyphicon-log-out  salir
 
 
       //            /.navbar-collapse

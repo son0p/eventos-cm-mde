@@ -120,12 +120,13 @@ module.exports = {
     res.send(req.body);
     Persona.update(req.body.id, req.body).populate('inscritoEnNodo').exec(function(err,upd) {
       sails.log.verbose(upd);
-      // Nodo.findOne({nombre : req.body.nodos}).populate('inscritos').exec(function (err, nodo){
+      Nodo.findOne({nombre : req.body.nodos}).populate('inscritos').exec(function (err, nodo){
 
-      //   // ESTA SALIENDO UN ERROR ACÁ, SOLUCIONARLO RÁPIDO
-      //   nodo.inscritos.add(req.body.id);
-      //   nodo.save(sails.log.verbose);
-      // });
+        // ESTA SALIENDO UN ERROR ACÁ, SOLUCIONARLO RÁPIDO
+        nodo.inscritos.add(req.body.id);
+        nodo.save(sails.log.verbose);
+      });
+
       if (err) {
         sails.log.verbose("No se logró actualizar");
         return;
