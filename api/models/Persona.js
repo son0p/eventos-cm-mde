@@ -41,7 +41,7 @@ module.exports = {
       type : 'ARRAY'
     },
     instrumentoDePreferencia : {
-      type : 'STRING'
+      type : 'ARRAY'
     }
   },
   /**
