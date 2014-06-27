@@ -34,9 +34,9 @@ block content
               label.control-label(for="institucionEducativa") Institución Educativa
               input.form-control(type="text", value="#{persona.institucionEducativa}", name="institucionEducativa", placeholder="institucionEducativa")
         .row
-          fieldset
-            .col-md-12.hide
-              label.control-label(for="nodos") Nodo más cercana a su lugar de residencia
+          fieldsetp
+            .col-md-12
+              label.control-label(for="nodos") Verifica que el Nodo más cercana a tu lugar de residencia sea el correcto
               select.selectpicker.col-md-12(name="nodos", value="", data-live-search="true", data-container="body")
                 - each nodo in nodos
                   - if(persona.inscritoEnNodo[0])

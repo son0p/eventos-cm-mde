@@ -134,6 +134,7 @@ module.exports = {
         if(parseInt(v) == 0) persona.inscritoEnNodo.remove(persona.inscritoEnNodo[v].id);
         if(parseInt(v)) persona.inscritoEnNodo.remove(persona.inscritoEnNodo[v].id);
       });
+      sails.log.verbose(nodoSeleccionado.id);
       persona.inscritoEnNodo.add(nodoSeleccionado.id);
       persona.save(sails.log.verbose);
 
