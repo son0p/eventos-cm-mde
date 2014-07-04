@@ -44,7 +44,7 @@ module.exports = {
     //sails.log.verbose(res.locals.nodos);
     //sails.log.verbose(req.body.nodos);
     var nodoSeleccionado = _.find(res.locals.nodos, { 'nombre' : req.body.nodos });
-    sails.log.verbose(nodoSeleccionado.id);
+    sails.log.verbose(nodoSeleccionado);
     Persona.create(req.body).populate('inscritoEnNodo').exec(function(err, persona){
       if (err) {
         sails.log.verbose(err);

@@ -32,6 +32,21 @@ block content
             .col-md-12
               label.control-label(for="institucionEducativa") Institución Educativa
               input.form-control(type="text", value="#{persona.institucionEducativa}", name="institucionEducativa", placeholder="institucionEducativa")
+
+        .row
+          fieldset
+            .col-md-12
+              label.control-label(for="sexo") Sexo
+              select.selectpicker.col-md-12(name="sexo", value="", data-live-search="true", data-container="body")
+                if (persona.sexo == "Mujer")
+                  option(selected="true") Mujer
+                else
+                  option Mujer
+                if (persona.sexo == "Hombre")
+                  option(selected="true") Hombre
+                else
+                  option Hombre
+
         .row
           fieldset
             .col-md-12

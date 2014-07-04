@@ -10,16 +10,29 @@ block content
           thead: tbody
             tr
               th Nombre
-              //th Correo
+              th Correo
               th Institución educativa
+              th Fecha de nacimiento
+              th ¿Ha estudiado música antes?
+              th ¿Sabe tocar algún instrumento?
+              th Géneros Musicales
+              th Instrumentos de preferencia
               th Nodo
-              //th Fecha inscripción
+              th Fecha inscripción
           tbody
             each persona in personas
               tr
                 td #{persona.nombre}
-                //td #{persona.correo}
+                td #{persona.correo}
                 td #{persona.institucionEducativa}
-                each nodo in persona.inscritoEnNodo
-                  td #{nodo.nombre}
-                //td #{persona.createdAt}
+                td #{persona.fechaNacimiento}
+                td #{persona.estudiadoMusicaAntes}
+                td #{persona.sabeTocarInstrumento}
+                td #{persona.generosMusicales}
+                td #{persona.instrumentoDePreferencia}
+                if(persona.inscritoEnNodo != '')
+                  each nodo in persona.inscritoEnNodo
+                    td #{nodo.nombre}
+                else
+                  td
+                td #{persona.createdAt}

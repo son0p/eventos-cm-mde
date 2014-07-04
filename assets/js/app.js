@@ -7,11 +7,12 @@ $(document).ready(function($) {
   // Definir formulario para crear persona
   function PersonaForm () {
     function getData() {
-      var fields = ['id','nombre','telefonos','correo','institucionEducativa','nodos','fechaNacimiento','estudiadoMusicaAntes','sabeTocarInstrumento','generosMusicales','instrumentoDePreferencia'];
+      var fields = ['id','nombre','telefonos','correo','institucionEducativa','nodos','fechaNacimiento','estudiadoMusicaAntes','sabeTocarInstrumento','generosMusicales','instrumentoDePreferencia','sexo'];
       var data = {};
       fields.forEach(function(f) {
         var value = '';
-        if(f == 'nodos') value = $('.selectpicker').val();
+        if(f == 'nodos') value = $('.selectpicker[name="nodos"]').val();
+        else if(f == 'sexo') value = $('.selectpicker[name="sexo"]').val();
         else if(f == 'estudiadoMusicaAntes') value = $("form[name='persona'] input[name="+f+"]").is(":checked");
         else if(f == 'sabeTocarInstrumento') value = $("form[name='persona'] input[name="+f+"]").is(":checked");
         else if(f == 'generosMusicales') value = $("form[name='persona'] input[name="+f+"]").tagsinput('items');

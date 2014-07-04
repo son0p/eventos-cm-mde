@@ -42,6 +42,10 @@ module.exports = {
     },
     instrumentoDePreferencia : {
       type : 'ARRAY'
+    },
+    sexo : {
+      type : 'STRING',
+      enum : ['Hombre','Mujer']
     }
   },
   /**
