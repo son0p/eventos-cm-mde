@@ -9,6 +9,11 @@ module.exports = {
   schema : true,
   attributes: {
     nombre: { type:'STRING'},
+    // Roles son estudiante, adminstrador, superadministrador
+    roles : {
+      type: 'array',
+      defaultsTo: 'estudiante'
+    },
     telefonos: {
       type: 'STRING'
     },

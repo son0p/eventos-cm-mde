@@ -14,6 +14,16 @@ function prettyDate(dateString){
 }
 
 module.exports = {
+  getTalleres : function(req, res, next) {
+    Taller.find().sort({ fecha: 'asc' }).exec(function(err, talleres){
+      var talleresArray = [];
+      _.each(talleres, function(taller){
+        talleresArray.push(taller.toJSON());
+      });
+      res.locals.talleres = talleresArray;
+      next();
+    });
+  },
 	index : function(req, res) {
     sails.log.verbose(req.session);
     Taller.find().sort({ fecha: 'asc' }).exec(function(err, talleres) {

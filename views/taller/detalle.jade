@@ -20,13 +20,16 @@ block content
             input(type="hidden", value="delete", name="_method")
             input#deletebtn_6.delconfirmbtn6.btn.btn-sm.btn-danger(type="button", onclick="$('.delconfirmbtn6').toggleClass('hidden');", value="Delete")
             input#confirm_btn6.delconfirmbtn6.btn.btn-sm.btn-danger.hidden(type="submit", value="Confirm")
+      .row.col-md-6
+        // /taller/:parentid/inscritos/add/:id?
+        p #{session.passport.user}
+        a.btn.btn-primary(href='/taller/'+taller.id+'/inscritos/add/'+session.passport.user) Inscribirse
+        a.btn.btn-primary(href='/') Regresar
 
-          a.btn.btn-primary(href='/taller/'+taller.id+'/inscripcion') Inscribirse
-          a.btn.btn-primary(href='/') Regresar
-    //
       hr
       .row
         h3 Inscritos
         ul.list-group
-          li.list-group-item #{taller.tallerista}
-            span.badge #{taller.institucionEducativo}
+          each inscrito in taller.inscritos
+            li.list-group-item inscrito
+              span.badge 1

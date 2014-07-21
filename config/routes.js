@@ -50,8 +50,12 @@ module.exports.routes = {
   'get /login' : 'AuthController.login',
   'post /login' : 'AuthController.process',
   'get /logout' : 'AuthController.logout',
-  '/faq' : 'AuthController.faq'
+  '/faq' : 'AuthController.faq',
 
+  '/admin' : ['TallerController.getTalleres','NodoController.getNodos','AdminController.index'],
+  '/admin/personas' : ['TallerController.getTalleres','NodoController.getNodos','AdminController.personas'],
+  '/admin/talleres' : ['PersonaController.getPersonas','NodoController.getNodos','AdminController.talleres'],
+  '/admin/nodos' : ['TallerController.getTalleres','PersonaController.getPersonas','AdminController.nodos']
   // If a request to a URL doesn't match any of the custom routes above, it is matched
   // against Sails route blueprints.  See `config/blueprints.js` for configuration options
   // and examples.

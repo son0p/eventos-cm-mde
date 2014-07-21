@@ -28,6 +28,7 @@ module.exports = {
         }
         //req.session.returnTo es asignada en api/policies/authenticated.js
         req.session.returnTo = '/';
+        sails.log.verbose("USUARIO"+user);
 
         res.send({ type: 'success', message : 'Se ha autenticado exitosamente, ¡bienvenido!'});
       });

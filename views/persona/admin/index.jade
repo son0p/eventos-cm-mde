@@ -1,0 +1,289 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Start Bootstrap - SB Admin Version 2.0 Demo
+    //
+       Core CSS - Include with every page
+    link(href='/styles/bootstrap.min.css', rel='stylesheet')
+    link(href='font-awesome/css/font-awesome.css', rel='stylesheet')
+    //
+       Page-Level Plugin CSS - Dashboard
+    link(href='/styles/plugins/morris/morris-0.4.3.min.css', rel='stylesheet')
+    link(href='/styles/plugins/timeline/timeline.css', rel='stylesheet')
+    //
+       Page-Level Plugin CSS - Tables
+    link(href='/styles/plugins/dataTables/dataTables.bootstrap.css', rel='stylesheet')
+
+    //
+       SB Admin CSS - Include with every page
+    link(href='/styles/sb-admin.css', rel='stylesheet')
+  body
+
+    #wrapper
+
+      nav.navbar.navbar-default.navbar-fixed-top(role='navigation', style='margin-bottom: 0;')
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') Casas de Música
+        //            Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse.navbar-ex1-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/faq') Preguntas frecuentes
+            if(!req.isAuthenticated())
+              li
+                a(href='/persona/registro') Registrarse
+              li
+                a(href='/login') Autenticarse
+          if (req.session.nombre)
+            ul.nav.navbar-top-links.navbar-right
+              li.dropdown
+                a.dropdown-toggle(data-toggle='dropdown', href='#')
+                  i.fa.fa-user.fa-fw
+                  i.fa.fa-caret-down
+                ul.dropdown-menu.dropdown-user
+                  li
+                    a(href='/persona/edit/#{req.session.passport.user}')
+                      i.fa.fa-user.fa-fw
+                      | User Profile
+                  li
+                    a(href='#')
+                      i.fa.fa-gear.fa-fw
+                      | Settings
+                  li.divider
+                  li
+                    a(href='/logout')
+                      i.fa.fa-sign-out.fa-fw
+                      | Logout
+
+        .navbar-default.navbar-static-side(role='navigation')
+          .sidebar-collapse
+            ul#side-menu.nav
+              li.sidebar-search
+                .input-group.custom-search-form
+                  input.form-control(type='text', placeholder='Search...')
+                  span.input-group-btn
+                    button.btn.btn-default(type='button')
+                      i.fa.fa-search
+                //
+                   /input-group
+              li
+                a(href='/admin')
+                  i.fa.fa-dashboard.fa-fw
+                  | Panel de adminstración
+              li
+                a(href='/admin/personas')
+                  | Personas
+              li
+                a(href='/admin/talleres')
+                  | Talleres
+              li
+                a(href='/admin/nodos')
+                  | Nodos
+
+      #page-wrapper
+
+        .row
+          .col-lg-12
+            h1.page-header Personas
+          //
+             /.col-lg-12
+        //
+           /.row
+        .row
+          .col-lg-12
+            .panel.panel-default
+              .panel-heading
+                | Personas inscritas
+              //
+                 /.panel-heading
+              .panel-body
+                .table-responsive
+                  table#dataTables-example.table.table-striped.table-bordered.table-hover
+
+                    thead
+                      tr
+                        th Id
+                        th Nombre
+                        th Correo
+                        th Institución educativa
+                        th Nodo
+                        th Fecha inscripción
+                    tbody
+                      each persona in personas
+                        tr
+                          td
+                            a(href='/persona/edit/'+ persona.id)
+                              i.fa.fa-edit.fa-fw
+                          td #{persona.nombre}
+                          td #{persona.correo}
+                          td #{persona.institucionEducativa}
+                          td
+                            each nodo in persona.inscritoEnNodo
+                              span  #{nodo.nombre}
+                          td #{persona.createdAt}
+
+        .row
+          .col-lg-12
+            h1.page-header Nodos
+          //
+             /.col-lg-12
+        //
+           /.row
+        .row
+          .col-lg-12
+            .panel.panel-default
+              .panel-heading
+                | Nodos registrados
+              //
+                 /.panel-heading
+              .panel-body
+                .table-responsive
+                  table#dataTables-example.table.table-striped.table-bordered.table-hover
+
+                    thead
+                      tr
+                        th Id
+                        th Nombre
+                        th Dirección
+                        th Teléfono
+                        th Fecha de registro
+                    tbody
+                      each nodo in nodos
+                        tr
+                          td
+                            a(href='/nodo/edit/'+ nodo.id)
+                              i.fa.fa-edit.fa-fw
+                          td #{nodo.nombre}
+                          td #{nodo.direccion}
+                          td #{nodo.telefono}
+                          td #{nodo.createdAt}
+
+
+
+        // .row
+        //   .col-lg-12
+        //     h1.page-header Notifications
+
+        // .row
+        //   .col-lg-6
+        //     .panel.panel-default
+        //       .panel-heading
+        //         | Modals
+        //       //
+        //          /.panel-heading
+        //       .panel-body
+        //         //
+        //            Button trigger modal
+        //         button.btn.btn-primary.btn-lg(data-toggle='modal', data-target='#myModal')
+        //           | Launch Demo Modal
+        //         //
+        //            Modal
+        //         #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        //           .modal-dialog
+        //             .modal-content
+        //               .modal-header
+        //                 button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+        //                 h4#myModalLabel.modal-title Modal title
+        //               .modal-body
+        //                 | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        //               .modal-footer
+        //                 button.btn.btn-default(type='button', data-dismiss='modal') Close
+        //                 button.btn.btn-primary(type='button') Save changes
+
+        .row
+          .col-lg-12
+            h1.page-header Talleres registados
+
+        .row
+          each taller in talleres
+            .col-lg-4
+              .panel.panel-default
+                .panel-heading
+                  | #{taller.nombre}
+                .panel-body
+                  p
+                    | #{taller.descripcion}
+                .panel-footer
+                  - var fecha = '';
+                  - (taller.fecha ? fecha = taller.fecha : fecha = "Fecha no asignada")
+                    | #{fecha}
+                  .navbar-right
+                    a(href='/taller/edit/'+ taller.id)
+                      i.fa.fa-edit.fa-fw
+          //
+
+                    //
+                       /.modal-content
+                  //
+                     /.modal-dialog
+                //
+                   /.modal
+              //
+                 .panel-body
+            //
+               /.panel
+          //
+             /.col-lg-6
+
+                 .panel-body
+            //
+               /.panel
+          //
+             /.col-lg-6
+        //
+           /.row
+      //
+         /#page-wrapper
+
+
+       /#wrapper
+    //
+       Core Scripts - Include with every page
+    script(src='js/jquery.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/plugins/metisMenu/jquery.metisMenu.js')
+    //
+       Page-Level Plugin Scripts - Dashboard
+    script(src='js/plugins/morris/raphael-2.1.0.min.js')
+    script(src='js/plugins/morris/morris.js')
+
+    //
+       Page-Level Plugin Scripts - Tables
+    script(src='js/plugins/dataTables/jquery.dataTables.js')
+    script(src='js/plugins/dataTables/dataTables.bootstrap.js')
+
+    //
+       SB Admin Scripts - Include with every page
+    script(src='js/sb-admin.js')
+
+    //
+       Page-Level Demo Scripts - Dashboard - Use for reference
+       script(src='js/demo/dashboard-demo.js')
+
+    //
+       Page-Level Demo Scripts - Tables - Use for reference
+    script
+      |  // Setup - add a text input to each footer cell
+      | $('#dataTables-example tfoot th').each( function () {
+      |  var title = $('#dataTables-example thead th').eq( $(this).index() ).text();
+      |  $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+      |  } );
+      | $(document).ready(function() {
+      | var table = $('#dataTables-example').dataTable();
+      | // Apply the search
+      |  table.columns().eq( 0 ).each( function ( colIdx ) {
+      |  $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+      |     table
+      |          .column( colIdx )
+      |          .search( this.value )
+      |          .draw();
+      |  } );
+      | } );
+      | });
