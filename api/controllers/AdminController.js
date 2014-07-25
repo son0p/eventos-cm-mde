@@ -8,22 +8,22 @@
 module.exports = {
 	index : function(req, res) {
     Persona.find().populateAll().exec(function(err, personas) {
-      return res.view('persona/admin/index',{ personas : personas});
+      return res.view('admin/index',{ personas : personas});
     });
   },
   talleres : function(req, res) {
-    Taller.find().populate("inscritos").exec(function(err, talleres) {
-      return res.view('persona/admin/talleres', {talleres : talleres});
+    Taller.find().populateAll().exec(function(err, talleres) {
+      return res.view('admin/talleres', {talleres : talleres});
     });
   },
   personas : function(req, res) {
     Persona.find().populateAll().exec(function(err, personas) {
-      return res.view('persona/admin/personas', { personas : personas });
+      return res.view('admin/personas', { personas : personas });
     });
   },
   nodos : function(req, res) {
-    Nodo.find().populate("inscritos").exec(function(err, nodos) {
-      return res.view('persona/admin/nodos', {nodos : nodos});
+    Nodo.find().populateAll().exec(function(err, nodos) {
+      return res.view('admin/nodos', {nodos : nodos});
     });
   }
 };
