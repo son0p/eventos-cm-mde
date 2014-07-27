@@ -32,6 +32,7 @@ module.exports.routes = {
   '/persona/edit/:id': ['NodoController.getNodos','PersonaController.edit'],
   '/persona/conocerte/:id': ['NodoController.getNodos','PersonaController.conocerte'],
   '/persona/update': ['NodoController.getNodos','PersonaController.update'],
+  '/persona/:id/inscribirEnTaller' : ['TallerController.getTalleres', 'PersonaController.inscribirEnTaller'],
     // Custom routes here...
   'get /taller/create': 'TallerController.create',
   'post /taller/create': 'TallerController.create_process',

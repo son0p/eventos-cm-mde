@@ -7,6 +7,7 @@ html
     //
        Core CSS - Include with every page
     link(href='/styles/bootstrap.min.css', rel='stylesheet')
+    link(href='/styles/bootstrap-select.css', rel='stylesheet')
     link(href='/font-awesome/css/font-awesome.css', rel='stylesheet')
     //
        Page-Level Plugin CSS - Dashboard
@@ -127,12 +128,32 @@ html
                           td
                             each nodo in persona.inscritoEnNodo
                               span  #{nodo.nombre}
-                          td #{persona.createdAt}
+                          td
+                            // No es necesario una form para cada cosa, solo, mirar el código de restablecimiento y las función allow() de app.js y http://api.jquery.com/jQuery.post/
+                            form(role="form", name = "inscripcion_taller")
+                              fieldset
+                                select.selectpicker.col-md-6(name="inscripcion_taller", value="", data-live-search="true", data-container="body")
+                                  - each taller in talleres
+                                    option #{taller.nombre}
+                              input.btn.btn-primary(value="Inscribirse", name="inscripcion_taller", type="button")
+
+
+        .row
+          .col-lg-12
+            .panel.panel-default
+              .panel-heading
+                | Inscripción en cursos
+              //
+                 /.panel-heading
+              .panel-body
+                .inscripcion_taller
+
 
     //
       Core Scripts - Include with every page
    script(src='/js/jquery.js')
    script(src='/js/bootstrap.min.js')
+   script(type='text/javascript', src='/js/bootstrap-select.js')
    script(src='/js/plugins/metisMenu/jquery.metisMenu.js')
    //
       Page-Level Plugin Scripts - Dashboard
@@ -156,6 +177,7 @@ html
       Page-Level Demo Scripts - Tables - Use for reference
    script
      |  // Setup - add a text input to each footer cell
+     | $('.selectpicker').selectpicker();
      | $('#dataTables-example tfoot th').each( function () {
      |  var title = $('#dataTables-example thead th').eq( $(this).index() ).text();
      |  $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
@@ -172,3 +194,5 @@ html
      |  } );
      | } );
      | });
+
+    script(type="text/javascript", src='/js/app.js')

@@ -4,6 +4,48 @@ $(document).ready(function($) {
   new LoginForm();
   new TallerForm();
 
+  function allow(obj, group_id, action_id) {
+    $("#container  table").mask("Espere...");
+    var strAlertSuccess = '<div class="alert alert-success" style="position: fixed; right:0px; top:215px; display: none;">'
+          + '<button data-dismiss="alert" class="close" type="button">×</button>'
+          + '<strong> Ha cambiado con éxito el permiso</strong>'
+          + '</div>';
+    $.post('/auth_acl/permissions/allow', {
+      data: {
+        groupId: group_id,
+        actionId: action_id
+      }
+    }, function(o) {
+      $('#container').load('/auth_acl/permissions');
+      var alertSuccess = $(strAlertSuccess).appendTo('body');
+      alertSuccess.show();
+      setTimeout(function() {
+        alertSuccess.remove();
+      }, 2000);
+    }, 'json');
+  }
+
+  // Define procesamiento de formulario de incripción
+  function InscribeTallerForm ()
+  {
+    function getData() {
+      var fields = ['inscripcion_taller'];
+      var data = {};
+      fields.forEach(function(f) {
+        var value = '';
+        if(f == 'inscripcion_taller') value = $('.selectpicker[name="inscripcion_taller"]').val();
+        data[f] = value;
+      });
+      return data;
+    };
+    // procesa formulario de inscripcion a curso
+    $("form[name='inscripcion_taller'] input[name='inscripcion_taller']").click(function(e){
+      console.log(getData());
+      $.post("/persona/:id/inscribirEnTaller", getData(), function(data) {
+        console.log(data);
+      });
+    });
+  };
   // Definir formulario para crear persona
   function PersonaForm () {
     function getData() {

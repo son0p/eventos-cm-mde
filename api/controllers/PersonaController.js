@@ -117,7 +117,7 @@ module.exports = {
       sabeTocarInstrumento : req.param('sabeTocarInstrumento'),
       generosMusicales : req.param('generosMusicales'),
       instrumentoDePreferencia : req.param('instrumentoDePreferencia')
-      };
+    };
     Persona.findOne(req.param('id')).populate('inscritoEnNodo').exec(function(err,persona) {
       sails.log.verbose(persona);
       if (err) {
@@ -149,5 +149,16 @@ module.exports = {
 
     //   res.redirect('/user/show/' + req.param('id'));
     // });
+  },
+
+  inscribirEnTaller : function(req, res) {
+    var tallerSeleccionadoId = _.find(res.locals.taller, { 'nombre' : req.body.inscripcion_taller });
+    Persona.findOneById(tallerSeleccionadoId).populate('inscritoEnTaller').exec( function(err, persona) {
+      if (err) return res.send(err);
+      persona.inscritoEnTaller.add(tallerSeleccionadoId);
+      persona.save();
+      return res.send({ type: 'success', message : 'Se incribió en el taller exitosamente'});
+    } );
+
   }
 };
