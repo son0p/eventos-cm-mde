@@ -150,12 +150,19 @@ module.exports = {
     //   res.redirect('/user/show/' + req.param('id'));
     // });
   },
-
+  render_inscribirEnTaller : function(req, res) {
+    console.log(req.param('id'));
+    return res.view('persona/helpers_persona/inscribir_en_taller',{ persona_id: req.param('id')});
+  },
   inscribirEnTaller : function(req, res) {
-    var tallerSeleccionadoId = _.find(res.locals.taller, { 'nombre' : req.body.inscripcion_taller });
-    Persona.findOneById(tallerSeleccionadoId).populate('inscritoEnTaller').exec( function(err, persona) {
+    var inscripcionObject = {
+      persona_id : req.param('persona_id'),
+      taller_a_inscribirse_id : req.param('inscripcion_taller')
+    };
+    Persona.findOneById(inscripcionObject.persona_id).populate('inscritoEnTaller').exec( function(err, persona) {
       if (err) return res.send(err);
-      persona.inscritoEnTaller.add(tallerSeleccionadoId);
+      sails.log.verbose(persona);
+      persona.inscritoEnTaller.add(inscripcionObject.taller_a_inscribirse_id);
       persona.save();
       return res.send({ type: 'success', message : 'Se incribió en el taller exitosamente'});
     } );

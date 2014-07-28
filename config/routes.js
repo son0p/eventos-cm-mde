@@ -32,7 +32,8 @@ module.exports.routes = {
   '/persona/edit/:id': ['NodoController.getNodos','PersonaController.edit'],
   '/persona/conocerte/:id': ['NodoController.getNodos','PersonaController.conocerte'],
   '/persona/update': ['NodoController.getNodos','PersonaController.update'],
-  '/persona/:id/inscribirEnTaller' : ['TallerController.getTalleres', 'PersonaController.inscribirEnTaller'],
+  'get /persona/:id/inscribirEnTaller' : ['TallerController.getTalleresActivos', 'PersonaController.render_inscribirEnTaller'],
+  'post /persona/:id/inscribirEnTaller' : ['TallerController.getTalleresActivos', 'PersonaController.inscribirEnTaller'],
     // Custom routes here...
   'get /taller/create': 'TallerController.create',
   'post /taller/create': 'TallerController.create_process',
@@ -54,9 +55,9 @@ module.exports.routes = {
   '/faq' : 'AuthController.faq',
 
   '/admin' : ['TallerController.getTalleres','NodoController.getNodos','AdminController.index'],
-  '/admin/personas' : ['TallerController.getTalleres','NodoController.getNodos','AdminController.personas'],
+  '/admin/personas' : ['TallerController.getTalleresActivos','NodoController.getNodos','AdminController.personas'],
   '/admin/talleres' : ['PersonaController.getPersonas','NodoController.getNodos','AdminController.talleres'],
-  '/admin/nodos' : ['TallerController.getTalleres','PersonaController.getPersonas','AdminController.nodos']
+  '/admin/nodos' : ['TallerController.getTalleresActivos','PersonaController.getPersonas','AdminController.nodos']
   // If a request to a URL doesn't match any of the custom routes above, it is matched
   // against Sails route blueprints.  See `config/blueprints.js` for configuration options
   // and examples.

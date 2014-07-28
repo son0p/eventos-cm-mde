@@ -113,7 +113,6 @@ html
                         th Id
                         th Nombre
                         th Correo
-                        th Institución educativa
                         th Nodo
                         th Fecha inscripción
                     tbody
@@ -124,75 +123,65 @@ html
                               i.fa.fa-edit.fa-fw
                           td #{persona.nombre}
                           td #{persona.correo}
-                          td #{persona.institucionEducativa}
                           td
                             each nodo in persona.inscritoEnNodo
                               span  #{nodo.nombre}
                           td
-                            // No es necesario una form para cada cosa, solo, mirar el código de restablecimiento y las función allow() de app.js y http://api.jquery.com/jQuery.post/
-                            form(role="form", name = "inscripcion_taller")
-                              fieldset
-                                select.selectpicker.col-md-6(name="inscripcion_taller", value="", data-live-search="true", data-container="body")
-                                  - each taller in talleres
-                                    option #{taller.nombre}
-                              input.btn.btn-primary(value="Inscribirse", name="inscripcion_taller", type="button")
+
+                            a.inscribir_en_taller(data-id=persona.id, href="javascript:void(0)")
+                              button.btn.btn-primary(data-toggle="modal" data-target="#myModal") Inscribir en taller
 
 
-        .row
-          .col-lg-12
-            .panel.panel-default
-              .panel-heading
-                | Inscripción en cursos
-              //
-                 /.panel-heading
-              .panel-body
-                .inscripcion_taller
 
 
-    //
-      Core Scripts - Include with every page
-   script(src='/js/jquery.js')
-   script(src='/js/bootstrap.min.js')
-   script(type='text/javascript', src='/js/bootstrap-select.js')
-   script(src='/js/plugins/metisMenu/jquery.metisMenu.js')
-   //
-      Page-Level Plugin Scripts - Dashboard
-   script(src='/js/plugins/morris/raphael-2.1.0.min.js')
-   script(src='/js/plugins/morris/morris.js')
+      #myModal.modal.fade(style='display: none;', tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+              h4#myModalLabel.modal-title Modal title
+            .modal-body
+              iframe(src="", id="iframe2", style="zoom:0.60; overflow: auto", frameborder="0", width="99.6%")
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal') Close
+              button.btn.btn-primary(type='button') Save changes
 
-   //
-      Page-Level Plugin Scripts - Tables
-   script(src='/js/plugins/dataTables/jquery.dataTables.js')
-   script(src='/js/plugins/dataTables/dataTables.bootstrap.js')
+  //
+    Core Scripts - Include with every page
+  script(src='/js/jquery.js')
+  script(src='/js/bootstrap.min.js')
+  script(type='text/javascript', src='/js/bootstrap-select.js')
+  script(src='/js/plugins/metisMenu/jquery.metisMenu.js')
+  //
+     Page-Level Plugin Scripts - Dashboard
+  script(src='/js/plugins/morris/raphael-2.1.0.min.js')
+  script(src='/js/plugins/morris/morris.js')
 
-   //
-      SB Admin Scripts - Include with every page
-   script(src='/js/sb-admin.js')
+  //
+     Page-Level Plugin Scripts - Tables
+  script(src='/js/plugins/dataTables/jquery.dataTables.js')
+  script(src='/js/plugins/dataTables/dataTables.bootstrap.js')
 
-   //
-      Page-Level Demo Scripts - Dashboard - Use for reference
+  //
+     SB Admin Scripts - Include with every page
+  script(src='/js/sb-admin.js')
+
+  //
+     Page-Level Demo Scripts - Dashboard - Use for reference
       script(src='/js/demo/dashboard-demo.js')
 
-   //
-      Page-Level Demo Scripts - Tables - Use for reference
-   script
-     |  // Setup - add a text input to each footer cell
-     | $('.selectpicker').selectpicker();
-     | $('#dataTables-example tfoot th').each( function () {
-     |  var title = $('#dataTables-example thead th').eq( $(this).index() ).text();
-     |  $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-     |  } );
-     | $(document).ready(function() {
-     | var table = $('#dataTables-example').dataTable();
-     | // Apply the search
-     |  table.columns().eq( 0 ).each( function ( colIdx ) {
-     |  $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
-     |     table
-     |          .column( colIdx )
-     |          .search( this.value )
-     |          .draw();
-     |  } );
-     | } );
-     | });
+  //
+     Page-Level Demo Scripts - Tables - Use for reference
+  script
+    | $('#dataTables-example tfoot th').each( function () {
+    |  var title = $('#dataTables-example thead th').eq( $(this).index() ).text();
+    |  $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    |  } );
+    | $(document).ready(function() {
+    | var table = $('#dataTables-example').dataTable();
+    |    // popover demo
+    |    $("[data-toggle=popover]")
+    |        .popover()
+    | });
 
-    script(type="text/javascript", src='/js/app.js')
+  script(type="text/javascript", src='/js/app.js')

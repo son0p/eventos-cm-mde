@@ -44,7 +44,9 @@ module.exports.policies = {
     'create': true,
     'edit': 'authenticated',
     'conocerte': 'authenticated',
-    'update': 'authenticated'
+    'update': 'authenticated',
+    'inscribirEnTaller': 'authenticated',
+    'render_inscribirEnTaller': 'authenticated'
   },
   AdminController : {
     '*' : false,
