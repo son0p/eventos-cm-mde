@@ -53,6 +53,9 @@ module.exports.policies = {
     'index' : ['authenticated','isAdmin'],
     'talleres' : ['authenticated','isAdmin'],
     'personas' : ['authenticated','isAdmin']
+  },
+  ProcesotallerController : {
+    '*' : true
   }
   /*
 	// Here's an example of adding some policies to a controller

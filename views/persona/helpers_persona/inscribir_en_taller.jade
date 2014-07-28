@@ -30,13 +30,44 @@ head
 
 
   body
-    form(role="form", name = "inscripcion_taller")
-      fieldset
-        .col-md-12.hide
-          input.form-control(type="text", value="#{persona_id}", name="persona_id", placeholder="persona_id")
-        .col-md-12
-          label.control-label(for="inscripcion_taller") Talleres activos
-          select.selectpicker.col-md-6(name="inscripcion_taller", value="", data-live-search="true", data-container="body")
-            - each taller in talleres
-              option(data-id=taller.id) #{taller.nombre}
-      input.btn.btn-primary(value="Inscribirse", name="inscripcion_taller", type="button")
+    #talleres-persona
+      .row
+        .col-lg-12
+          .panel.panel-default
+            .panel-heading
+              | Talleres
+      .row.col-lg-12.panel-body
+        if (persona.inscritoEnTaller && persona.inscritoEnTaller.length > 0)
+          .table-responsive
+            table#dataTables-example.table.table-striped.table-bordered.table-hover
+
+              thead
+                tr
+                  th Id
+                  th Taller
+              tbody
+                each taller in persona.inscritoEnTaller
+                  tr
+                    td
+                      a(href='#')
+                        //persona/:id/inscritoEnTaller/:id/remove')
+                        button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                        i.fa.fa-edit.fa-fw
+                    td #{taller.nombre}
+
+
+
+    #form-inscripcion
+      .row
+        .col-lg-12
+        form(role="form", name = "inscripcion_taller")
+          fieldset
+            .col-md-12.hide
+              input.form-control(type="text", value="#{persona_id}", name="persona_id", placeholder="persona_id")
+            .col-md-12
+              label.control-label(for="inscripcion_taller") Inscribirse en taller
+              select.selectpicker.col-md-6(name="inscripcion_taller", value="", data-live-search="true", data-container="body")
+                - each taller in talleres
+                  option(data-id=taller.id) #{taller.nombre}
+            .col-md-6
+              input.btn.btn-primary(value="Inscribirse", name="inscripcion_taller", type="button")

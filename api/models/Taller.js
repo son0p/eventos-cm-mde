@@ -39,6 +39,10 @@ module.exports = {
     inscritos : {
       collection : 'Persona',
       via : 'inscritoEnTaller'
-      }
+    },
+    alumnosEnProceso : {
+      collection : 'Procesotaller',
+      via : 'taller'
+    }
   }
 };

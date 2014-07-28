@@ -25,7 +25,7 @@ $(document).ready(function($) {
   new PersonaForm();
   new LoginForm();
   new TallerForm();
-  new  InscribeTallerForm();
+  new InscribeTallerForm();
 
   $('.inscribir_en_taller').click(function(e) {
     var id = $(this).data("id");
@@ -58,6 +58,8 @@ $(document).ready(function($) {
       console.log(getData());
       $.post("/persona/:id/inscribirEnTaller", getData(), function(data) {
         console.log(data);
+        console.log('/persona/'+data.persona_id+'/inscribirEnTaller');
+        window.location = '/persona/'+data.persona_id+'/inscribirEnTaller';
       });
     });
   };
@@ -124,6 +126,7 @@ $(document).ready(function($) {
       });
     });
   }
+
   // Definir formulario para crear talleres
   function TallerForm () {
     function getData() {

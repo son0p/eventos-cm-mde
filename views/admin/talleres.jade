@@ -116,19 +116,19 @@ html
                         th Nodo
                         th Fecha inscripción
                     tbody
-                      each persona in personas
+                      each taller in talleres
                         tr
                           td
-                            a(href='/persona/edit/'+ persona.id)
+                            a(href='/taller/edit/'+ taller.id)
                               i.fa.fa-edit.fa-fw
-                          td #{persona.nombre}
-                          td #{persona.correo}
-                          td
-                            each nodo in persona.inscritoEnNodo
-                              span  #{nodo.nombre}
+                          td #{taller.nombre}
+                          td #{taller.descripcion}
+                          td #{taller.publicar}
+                            // each nodo in persona.inscritoEnNodo
+                            //   span  #{nodo.nombre}
                           td
 
-                            a.inscribir_en_taller(data-id=persona.id, href="javascript:void(0)")
+                            a.inscribir_en_taller(data-id=taller.id, href="javascript:void(0)")
                               button.btn.btn-primary(data-toggle="modal" data-target="#myModal") Inscribir en taller
 
 

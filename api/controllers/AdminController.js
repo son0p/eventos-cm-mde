@@ -12,7 +12,7 @@ module.exports = {
     });
   },
   talleres : function(req, res) {
-    Taller.find().populateAll().exec(function(err, talleres) {
+    Taller.find({publicar : 'true'}).populateAll().exec(function(err, talleres) {
       return res.view('admin/talleres', {talleres : talleres});
     });
   },

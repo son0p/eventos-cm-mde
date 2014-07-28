@@ -14,6 +14,10 @@ module.exports = {
     taller : {
       model: 'Taller'
     },
+    alumnoActivo : {
+      type : 'boolean',
+      defaultsTo : 'false'
+    },
     fechaInscripcion : {
       type : 'date'
     },
