@@ -22,12 +22,22 @@ block content
               input.form-control(type="text", value="", name="lugar", placeholder="lugar")
         .row
           fieldset
-            .col-md-12#sandbox-container
-              label.control-label(for="fecha") Fecha (AAAA/MM/DD):
+            .col-md-6#sandbox-container
+              label.control-label(for="fecha") Fecha de Inicio (AAAA/MM/DD):
               input.form-control(type="text", value="", name="fecha", placeholder="AAAA/MM/DD")
         .row
           fieldset
-            .col-md-12
+            .col-md-6#sandbox-container
+              label.control-label(for="fechaFinaliza") Fecha en que finaliza (AAAA/MM/DD):
+              input.form-control(type="text", value="", name="fechaFinaliza", placeholder="AAAA/MM/DD")
+        .row
+          fieldset
+            .col-md-6
+              label.control-label(for="periodicidad") Periodicidad (0 evento único, 1 diario, 8 semanal ):
+              input.form-control(type="text", value="", name="periodicidad", placeholder="peridicidad")
+        .row
+          fieldset
+            .col-md-6
               label.control-label(for="hora") Hora:
               input.form-control(type="text", value="", name="hora", placeholder="hora")
         .row
