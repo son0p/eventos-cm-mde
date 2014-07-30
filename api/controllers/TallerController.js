@@ -115,6 +115,8 @@ module.exports = {
       descripcion: req.param('descripcion'),
       lugar: req.param('lugar'),
       fecha: req.param('fecha'),
+      fechaFinaliza: req.param('fechaFinaliza'),
+      periodicidad: req.param('periodicidad'),
       hora: req.param('hora'),
       requerimientos: req.param('requerimientos'),
       publicar : req.param('publicar'),

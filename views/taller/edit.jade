@@ -32,6 +32,16 @@ block content
               input.form-control(type="text", value="#{taller.fecha}", name="fecha", placeholder="AAAA/MM/DD")
         .row
           fieldset
+            .col-md-6
+              label.control-label(for="fechaFinaliza") Fecha en que finaliza (AAAA/MM/DD):
+              input.form-control(type="text", value="#{taller.fechaFinaliza}", name="fechaFinaliza", placeholder="AAAA/MM/DD")
+        .row
+          fieldset
+            .col-md-6
+              label.control-label(for="periodicidad") Periodicidad (0 evento único, 1 diario, 8 semanal ):
+              input.form-control(type="text", value="#{taller.periodicidad}", name="periodicidad", placeholder="peridicidad")
+        .row
+          fieldset
             .col-md-12
               label.control-label(for="hora") Hora:
               input.form-control(type="text", value="#{taller.hora}", name="hora", placeholder="hora")
