@@ -27,7 +27,7 @@ var fechasClasesArray = [ '08/04/2014',
 function fillSesiones (fechasClasesArray) {
   sesiones = [];
   fechasClasesArray.forEach(function (e, i) {
-  sesiones[i] = { fecha : e , comentario : '' };
+  sesiones[i] = { fecha : e , asistio : false, comentario : '' };
   });
   return sesiones;
 };
@@ -35,17 +35,16 @@ function fillSesiones (fechasClasesArray) {
 
 module.exports = {
   //Utilizar beforeCreate para verificar que no se inscribe más de un taller igual para un persona
-	activarProces : function (req, res) {
+	activarProceso : function (req, res) {
     var sesiones = fillSesiones(fechasClasesArray);
     var procesoObj = {
-      alumno : req.param('alumno'),
-      taller : req.param('taller'),
+      alumno : req.query.persona,
+      taller : req.query.taller,
       sesiones : sesiones
     };
     Procesotaller.create(procesoObj).exec(function (err, proceso) {
       if(err) return res.send(err);
-      return res.send(persona);
-    })
-;
+      return res.send(proceso);
+    });
   }
 };

@@ -37,6 +37,17 @@ $(document).ready(function($) {
     $('#myModal').modal({show: true});
   });
 
+
+  $('.lista_inscritos_taller').click(function(e) {
+    var id = $(this).data("id");
+    var frameSrc = "/persona/"+ id + "/inscribirEnTaller";
+    // Evento en bootstrap 3 es shown.bs.modal http://stackoverflow.com/questions/12190119/bootstrap-modal-show-event
+    $('#myModal').on('shown.bs.modal', function() {
+      $('iframe').attr("src", frameSrc);
+    });
+    $('#myModal').modal({show: true});
+  });
+
   // Define procesamiento de formulario de incripción
   function InscribeTallerForm ()
   {
@@ -130,7 +141,7 @@ $(document).ready(function($) {
   // Definir formulario para crear talleres
   function TallerForm () {
     function getData() {
-      var fields = ['id','nombre','descripcion','lugar','fecha','hora','requerimientos','publicar','eventoInterno'];
+      var fields = ['id','nombre','descripcion','lugar','fecha','fechaFinaliza','periodicidad','hora','requerimientos','publicar','eventoInterno'];
       var data = {};
       fields.forEach(function(f) {
         if(f == 'eventoInterno') value = $("form[name='taller'] input[name="+f+"]").is(":checked");

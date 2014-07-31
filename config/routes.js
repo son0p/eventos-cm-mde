@@ -41,6 +41,7 @@ module.exports.routes = {
   'get /taller/edit/:id': 'TallerController.edit',
   'post /taller/edit': 'TallerController.edit_process',
   'get /taller/:id': 'TallerController.find',
+  'get /taller/:id/listadoInscritos': 'TallerController.listadoInscritos',
   // {
   //   controller : 'taller',
   //   action : 'find'

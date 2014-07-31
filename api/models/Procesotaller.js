@@ -16,7 +16,7 @@ module.exports = {
     },
     alumnoActivo : {
       type : 'boolean',
-      defaultsTo : 'false'
+      defaultsTo : 'true'
     },
     fechaInscripcion : {
       type : 'date'

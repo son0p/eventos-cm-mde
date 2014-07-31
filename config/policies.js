@@ -32,7 +32,8 @@ module.exports.policies = {
     'edit_process': 'authenticated',
     'index': true,
     'find': true,
-    'inscritos': true
+    'inscritos': true,
+    'listadoInscritos': true
   },
   NodoController: {
     '*': false,

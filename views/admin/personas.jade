@@ -128,8 +128,8 @@ html
                               span  #{nodo.nombre}
                           td
 
-                            a.inscribir_en_taller(data-id=persona.id, href="javascript:void(0)")
-                              button.btn.btn-primary(data-toggle="modal" data-target="#myModal") Inscribir en taller
+                            a.btn.btn-primary(data-id=persona.id, href="/persona/#{persona.id}/inscribirEnTaller") Inscribir en taller
+                              //button.btn.btn-primary(data-toggle="modal" data-target="#myModal") Inscribir en taller
 
 
 

@@ -130,5 +130,11 @@ module.exports = {
       }
       res.send({ type: 'success', message : 'Taller actualizando exitosamente'});
     });
+  },
+  listadoInscritos : function(req, res) {
+    Taller.findOneById(req.param('id')).populateAll().exec(function(err, taller) {
+      if(err) return res.send(err);
+      return res.view('taller/listado_inscritos_taller', {taller : taller});
+    });
   }
 };
