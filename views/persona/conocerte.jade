@@ -47,6 +47,12 @@ block content
                 else
                   option Hombre
 
+        .row.hide
+          fieldset
+            .col-md-12
+              label.control-label(for="documento") Documento de identidad
+              input.form-control(type="text", value="#{persona.institucionEducativa}", name="documento", placeholder="documento de identidad")
+
         .row
           fieldsetp
             .col-md-12

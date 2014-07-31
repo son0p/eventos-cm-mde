@@ -116,7 +116,9 @@ module.exports = {
       estudiadoMusicaAntes : req.param('estudiadoMusicaAntes'),
       sabeTocarInstrumento : req.param('sabeTocarInstrumento'),
       generosMusicales : req.param('generosMusicales'),
-      instrumentoDePreferencia : req.param('instrumentoDePreferencia')
+      instrumentoDePreferencia : req.param('instrumentoDePreferencia'),
+      sexo : req.param('sexo'),
+      documento : req.param('documento')
       };
     Persona.findOne(req.param('id')).populate('inscritoEnNodo').exec(function(err,persona) {
       sails.log.verbose(persona);

@@ -17,6 +17,9 @@ module.exports = {
     telefonos: {
       type: 'STRING'
     },
+    documento : {
+      type : 'string'
+    },
     correo : {
       type: 'email',
       required: true,

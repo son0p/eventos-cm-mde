@@ -37,6 +37,12 @@ block content
         .row
           fieldset
             .col-md-12
+              label.control-label(for="documento") Documento de identidad
+              input.form-control(type="text", value="", name="documento", placeholder="documento de identidad")
+
+        .row
+          fieldset
+            .col-md-12
               label.control-label(for="nodos") Nodo más cercana a su lugar de residencia
             .col-md-12
               select.selectpicker.col-md-12(name="nodos", value="", data-live-search="true", data-container="body")

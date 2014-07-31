@@ -7,7 +7,7 @@ $(document).ready(function($) {
   // Definir formulario para crear persona
   function PersonaForm () {
     function getData() {
-      var fields = ['id','nombre','telefonos','correo','institucionEducativa','nodos','fechaNacimiento','estudiadoMusicaAntes','sabeTocarInstrumento','generosMusicales','instrumentoDePreferencia','sexo'];
+      var fields = ['id','nombre','telefonos','correo','institucionEducativa','nodos','fechaNacimiento','estudiadoMusicaAntes','sabeTocarInstrumento','generosMusicales','instrumentoDePreferencia','sexo','documento'];
       var data = {};
       fields.forEach(function(f) {
         var value = '';
