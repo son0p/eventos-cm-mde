@@ -42,16 +42,16 @@ module.exports = {
   create : function(req, res) {
     sails.log.verbose(req.body);
     //sails.log.verbose(res.locals.nodos);
-    //sails.log.verbose(req.body.nodos);
-    var nodoSeleccionado = _.find(res.locals.nodos, { 'nombre' : req.body.nodos });
-    sails.log.verbose(nodoSeleccionado);
+    sails.log.verbose(req.body.nodos);
+    //var nodoSeleccionado = _.find(res.locals.nodos, { 'nombre' : req.body.nodos });
+    //sails.log.verbose(nodoSeleccionado);
     Persona.create(req.body).populate('inscritoEnNodo').exec(function(err, persona){
       if (err) {
         sails.log.verbose(err);
         req.flash('message', 'Error en la autenticación');
         return res.send(err);
       }
-      persona.inscritoEnNodo.add(nodoSeleccionado.id);
+      persona.inscritoEnNodo.add(req.body.nodos);
       persona.save(sails.log.verbose);
       req.flash('message', 'Usted se ha registrado con exito!');
       //Log user in
@@ -78,6 +78,7 @@ module.exports = {
   // render the conocerte view
   conocerte: function(req, res, next) {
     // Find the user from the id passed in via params
+    sails.log.verbose(req.params.all());
     Persona.findOne(req.param('id')).populate('inscritoEnNodo').exec(function(err, persona) {
       if (err) return next(err);
       if (!persona) return next('User doesn\'t exist.');
@@ -88,7 +89,6 @@ module.exports = {
   },
     // render the edit view (e.g. /views/edit.ejs)
   edit: function(req, res, next) {
-
     // Find the user from the id passed in via params
     Persona.findOne(req.param('id')).populate('inscritoEnNodo').exec(function(err, persona) {
       if (err) return next(err);
@@ -104,10 +104,12 @@ module.exports = {
     // https://github.com/balderdashy/waterline/issues/290
     sails.log.verbose(req.params.all());
     sails.log.verbose(req.body);
-    var nodoSeleccionado = _.find( res.locals.nodos, { 'nombre' : req.body.nodos });
+    var nodoSeleccionado = req.param('nodos');
+          //_.find( res.locals.nodos, { 'nombre' : req.body.nodos });
     sails.log.verbose("VEREDE " + (nodoSeleccionado));
 
     var PersonaObj = {
+
       id : req.param('id'),
       nombre : req.param('nombre'),
       telefonos : req.param('telefonos'),
@@ -129,13 +131,21 @@ module.exports = {
       _.assign(persona, PersonaObj);
       // VERIFICAR SI YA ESTÁ EN EL NODO O REMOVER ANTERIOR Y AGREGAR NUEVO
       // EN ESTE MOMENTO SOLO SE PUEDE AGREGAR UN NODO
-      sails.log.verbose(Object.keys(persona.inscritoEnNodo));
+      // sails.log.verbose(Object.keys(persona.inscritoEnNodo));
+      if(Object.keys(persona.inscritoEnNodo).length >= 3) sails.log.verbose("mayor o igual que 3");
       Object.keys(persona.inscritoEnNodo).forEach(function(v) {
         if(parseInt(v) == 0) persona.inscritoEnNodo.remove(persona.inscritoEnNodo[v].id);
         if(parseInt(v)) persona.inscritoEnNodo.remove(persona.inscritoEnNodo[v].id);
+        // sails.log.verbose(persona.inscritoEnNodo);
       });
-      sails.log.verbose(nodoSeleccionado.id);
-      persona.inscritoEnNodo.add(nodoSeleccionado.id);
+
+      // OJO ACÁ: no hace nada si hay un error
+      try {
+        persona.inscritoEnNodo.add(nodoSeleccionado);
+      } catch (e) {
+        sails.log.verbose(e);
+      }
+
       persona.save(sails.log.verbose);
 
       sails.log.verbose("Actualizado");

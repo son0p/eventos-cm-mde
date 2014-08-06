@@ -81,7 +81,7 @@ $(document).ready(function($) {
       var data = {};
       fields.forEach(function(f) {
         var value = '';
-        if(f == 'nodos') value = $('.selectpicker[name="nodos"]').val();
+        if(f == 'nodos') value = $('.selectpicker[name="nodos"]').find('option:selected').data('id');
         else if(f == 'sexo') value = $('.selectpicker[name="sexo"]').val();
         else if(f == 'estudiadoMusicaAntes') value = $("form[name='persona'] input[name="+f+"]").is(":checked");
         else if(f == 'sabeTocarInstrumento') value = $("form[name='persona'] input[name="+f+"]").is(":checked");

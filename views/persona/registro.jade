@@ -41,7 +41,7 @@ block content
             .col-md-12
               select.selectpicker.col-md-12(name="nodos", value="", data-live-search="true", data-container="body")
                 - each nodo in nodos
-                  option #{nodo.nombre}
+                  option(data-id=nodo.id) #{nodo.nombre}
 
           br
           .row
