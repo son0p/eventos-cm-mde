@@ -83,6 +83,7 @@ module.exports = {
       if (err) return next(err);
       if (!persona) return next('User doesn\'t exist.');
       // res.send(persona);
+      sails.log.verbose(persona);
       var nodos = res.locals.nodos;
       res.view({ nodos: nodos , persona : persona, id: req.param('id') });
     });
