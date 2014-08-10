@@ -25,7 +25,18 @@ module.exports = {
       required: true,
       unique: true
     },
+    documentoIdentidad : {
+      type: 'string'
+      //required: true,
+      //unique: true
+    },
     institucionEducativa : { type : 'STRING' },
+    // LA PERSONA SE INSCRIBE EN UN PROCESO DE FORMACIÓN QUE TIENE ASOCIADO UN TALLER, ASISTENCIA, COMENTARIOS POR ASISTENCIA
+    procesosFormativos : {
+      collection : 'Procesotaller',
+      via : 'alumno'
+    },
+    // COMO LOGRAR ESTO
     inscritoEnTaller : {
       collection : 'Taller',
       via : 'inscritos',
@@ -55,7 +66,7 @@ module.exports = {
       type : 'STRING',
       enum : ['Hombre','Mujer']
     }
-  },
+  }
   /**
    * Enrolls a user in one or more courses.
    * @param  {Object}   options

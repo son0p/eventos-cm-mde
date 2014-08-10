@@ -7,7 +7,7 @@ html
     //
        Core CSS - Include with every page
     link(href='/styles/bootstrap.min.css', rel='stylesheet')
-    link(href='font-awesome/css/font-awesome.css', rel='stylesheet')
+    link(href='/font-awesome/css/font-awesome.css', rel='stylesheet')
     //
        Page-Level Plugin CSS - Dashboard
     link(href='/styles/plugins/morris/morris-0.4.3.min.css', rel='stylesheet')
@@ -71,8 +71,6 @@ html
                   span.input-group-btn
                     button.btn.btn-default(type='button')
                       i.fa.fa-search
-                //
-                   /input-group
               li
                 a(href='/admin')
                   i.fa.fa-dashboard.fa-fw
@@ -165,38 +163,6 @@ html
                           td #{nodo.telefono}
                           td #{nodo.createdAt}
 
-
-
-        // .row
-        //   .col-lg-12
-        //     h1.page-header Notifications
-
-        // .row
-        //   .col-lg-6
-        //     .panel.panel-default
-        //       .panel-heading
-        //         | Modals
-        //       //
-        //          /.panel-heading
-        //       .panel-body
-        //         //
-        //            Button trigger modal
-        //         button.btn.btn-primary.btn-lg(data-toggle='modal', data-target='#myModal')
-        //           | Launch Demo Modal
-        //         //
-        //            Modal
-        //         #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-        //           .modal-dialog
-        //             .modal-content
-        //               .modal-header
-        //                 button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-        //                 h4#myModalLabel.modal-title Modal title
-        //               .modal-body
-        //                 | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        //               .modal-footer
-        //                 button.btn.btn-default(type='button', data-dismiss='modal') Close
-        //                 button.btn.btn-primary(type='button') Save changes
-
         .row
           .col-lg-12
             h1.page-header Talleres registados
@@ -217,55 +183,31 @@ html
                   .navbar-right
                     a(href='/taller/edit/'+ taller.id)
                       i.fa.fa-edit.fa-fw
-          //
-
-                    //
-                       /.modal-content
-                  //
-                     /.modal-dialog
-                //
-                   /.modal
-              //
-                 .panel-body
-            //
-               /.panel
-          //
-             /.col-lg-6
-
-                 .panel-body
-            //
-               /.panel
-          //
-             /.col-lg-6
-        //
-           /.row
-      //
-         /#page-wrapper
 
 
-       /#wrapper
+
     //
-       Core Scripts - Include with every page
-    script(src='js/jquery.js')
-    script(src='js/bootstrap.min.js')
-    script(src='js/plugins/metisMenu/jquery.metisMenu.js')
+    Core Scripts - Include with every page
+    script(src='/js/jquery.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/plugins/metisMenu/jquery.metisMenu.js')
     //
        Page-Level Plugin Scripts - Dashboard
-    script(src='js/plugins/morris/raphael-2.1.0.min.js')
-    script(src='js/plugins/morris/morris.js')
+    script(src='/js/plugins/morris/raphael-2.1.0.min.js')
+    script(src='/js/plugins/morris/morris.js')
 
     //
        Page-Level Plugin Scripts - Tables
-    script(src='js/plugins/dataTables/jquery.dataTables.js')
-    script(src='js/plugins/dataTables/dataTables.bootstrap.js')
+    script(src='/js/plugins/dataTables/jquery.dataTables.js')
+    script(src='/js/plugins/dataTables/dataTables.bootstrap.js')
 
     //
        SB Admin Scripts - Include with every page
-    script(src='js/sb-admin.js')
+    script(src='/js/sb-admin.js')
 
     //
        Page-Level Demo Scripts - Dashboard - Use for reference
-       script(src='js/demo/dashboard-demo.js')
+       script(src='/js/demo/dashboard-demo.js')
 
     //
        Page-Level Demo Scripts - Tables - Use for reference

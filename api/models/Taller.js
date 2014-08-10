@@ -25,6 +25,11 @@ module.exports = {
       },
     lugar : { type : 'STRING' },
     fecha : { type : 'DATE' },
+    fechaFinaliza : { type : 'DATE' },
+    periodicidad : { 
+      type : 'INTEGER',
+      defaultsTo : '0'
+      },
     hora : { type : 'STRING' },
     contacto : { type : 'STRING' },
     urlImagen : { type : 'STRING' },
@@ -39,6 +44,10 @@ module.exports = {
     inscritos : {
       collection : 'Persona',
       via : 'inscritoEnTaller'
-      }
+    },
+    alumnosEnProceso : {
+      collection : 'Procesotaller',
+      via : 'taller'
+    }
   }
 };

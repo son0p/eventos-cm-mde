@@ -42,16 +42,16 @@ module.exports = {
   create : function(req, res) {
     sails.log.verbose(req.body);
     //sails.log.verbose(res.locals.nodos);
-    //sails.log.verbose(req.body.nodos);
-    var nodoSeleccionado = _.find(res.locals.nodos, { 'nombre' : req.body.nodos });
-    sails.log.verbose(nodoSeleccionado);
+    sails.log.verbose(req.body.nodos);
+    //var nodoSeleccionado = _.find(res.locals.nodos, { 'nombre' : req.body.nodos });
+    //sails.log.verbose(nodoSeleccionado);
     Persona.create(req.body).populate('inscritoEnNodo').exec(function(err, persona){
       if (err) {
         sails.log.verbose(err);
         req.flash('message', 'Error en la autenticación');
         return res.send(err);
       }
-      persona.inscritoEnNodo.add(nodoSeleccionado.id);
+      persona.inscritoEnNodo.add(req.body.nodos);
       persona.save(sails.log.verbose);
       req.flash('message', 'Usted se ha registrado con exito!');
       //Log user in
@@ -78,17 +78,18 @@ module.exports = {
   // render the conocerte view
   conocerte: function(req, res, next) {
     // Find the user from the id passed in via params
+    sails.log.verbose(req.params.all());
     Persona.findOne(req.param('id')).populate('inscritoEnNodo').exec(function(err, persona) {
       if (err) return next(err);
       if (!persona) return next('User doesn\'t exist.');
       // res.send(persona);
+      sails.log.verbose(persona);
       var nodos = res.locals.nodos;
       res.view({ nodos: nodos , persona : persona, id: req.param('id') });
     });
   },
     // render the edit view (e.g. /views/edit.ejs)
   edit: function(req, res, next) {
-
     // Find the user from the id passed in via params
     Persona.findOne(req.param('id')).populate('inscritoEnNodo').exec(function(err, persona) {
       if (err) return next(err);
@@ -104,10 +105,12 @@ module.exports = {
     // https://github.com/balderdashy/waterline/issues/290
     sails.log.verbose(req.params.all());
     sails.log.verbose(req.body);
-    var nodoSeleccionado = _.find( res.locals.nodos, { 'nombre' : req.body.nodos });
+    var nodoSeleccionado = req.param('nodos');
+          //_.find( res.locals.nodos, { 'nombre' : req.body.nodos });
     sails.log.verbose("VEREDE " + (nodoSeleccionado));
 
     var PersonaObj = {
+
       id : req.param('id'),
       nombre : req.param('nombre'),
       telefonos : req.param('telefonos'),
@@ -131,13 +134,21 @@ module.exports = {
       _.assign(persona, PersonaObj);
       // VERIFICAR SI YA ESTÁ EN EL NODO O REMOVER ANTERIOR Y AGREGAR NUEVO
       // EN ESTE MOMENTO SOLO SE PUEDE AGREGAR UN NODO
-      sails.log.verbose(Object.keys(persona.inscritoEnNodo));
+      // sails.log.verbose(Object.keys(persona.inscritoEnNodo));
+      if(Object.keys(persona.inscritoEnNodo).length >= 3) sails.log.verbose("mayor o igual que 3");
       Object.keys(persona.inscritoEnNodo).forEach(function(v) {
         if(parseInt(v) == 0) persona.inscritoEnNodo.remove(persona.inscritoEnNodo[v].id);
         if(parseInt(v)) persona.inscritoEnNodo.remove(persona.inscritoEnNodo[v].id);
+        // sails.log.verbose(persona.inscritoEnNodo);
       });
-      sails.log.verbose(nodoSeleccionado.id);
-      persona.inscritoEnNodo.add(nodoSeleccionado.id);
+
+      // OJO ACÁ: no hace nada si hay un error
+      try {
+        persona.inscritoEnNodo.add(nodoSeleccionado);
+      } catch (e) {
+        sails.log.verbose(e);
+      }
+
       persona.save(sails.log.verbose);
 
       sails.log.verbose("Actualizado");
@@ -151,5 +162,27 @@ module.exports = {
 
     //   res.redirect('/user/show/' + req.param('id'));
     // });
+  },
+  render_inscribirEnTaller : function(req, res) {
+    console.log(req.param('id'));
+    var persona_id = req.param('id');
+    Persona.findOneById(persona_id).populate('inscritoEnTaller').exec(function (err, persona) {
+      if(err) return res.send(err);
+      return res.view('persona/helpers_persona/inscribir_en_taller',{ persona_id: persona_id, persona : persona});
+    });
+  },
+  inscribirEnTaller : function(req, res) {
+    var inscripcionObject = {
+      persona_id : req.param('persona_id'),
+      taller_a_inscribirse_id : req.param('inscripcion_taller')
+    };
+    Persona.findOneById(inscripcionObject.persona_id).populate('inscritoEnTaller').exec( function(err, persona) {
+      if (err) return res.send(err);
+      sails.log.verbose(persona);
+      persona.inscritoEnTaller.add(inscripcionObject.taller_a_inscribirse_id);
+      persona.save();
+      return res.send({ type: 'success', message : 'Se incribió en el taller exitosamente', persona_id : persona.id});
+    } );
+
   }
 };

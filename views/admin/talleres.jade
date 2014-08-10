@@ -1,0 +1,187 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Start Bootstrap - SB Admin Version 2.0 Demo
+    //
+       Core CSS - Include with every page
+    link(href='/styles/bootstrap.min.css', rel='stylesheet')
+    link(href='/styles/bootstrap-select.css', rel='stylesheet')
+    link(href='/font-awesome/css/font-awesome.css', rel='stylesheet')
+    //
+       Page-Level Plugin CSS - Dashboard
+    link(href='/styles/plugins/morris/morris-0.4.3.min.css', rel='stylesheet')
+    link(href='/styles/plugins/timeline/timeline.css', rel='stylesheet')
+    //
+       Page-Level Plugin CSS - Tables
+    link(href='/styles/plugins/dataTables/dataTables.bootstrap.css', rel='stylesheet')
+
+    //
+       SB Admin CSS - Include with every page
+    link(href='/styles/sb-admin.css', rel='stylesheet')
+  body
+
+    #wrapper
+
+      nav.navbar.navbar-default.navbar-fixed-top(role='navigation', style='margin-bottom: 0;')
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') Casas de Música
+        //            Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse.navbar-ex1-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/faq') Preguntas frecuentes
+            if(!req.isAuthenticated())
+              li
+                a(href='/persona/registro') Registrarse
+              li
+                a(href='/login') Autenticarse
+          if (req.session.nombre)
+            ul.nav.navbar-top-links.navbar-right
+              li.dropdown
+                a.dropdown-toggle(data-toggle='dropdown', href='#')
+                  i.fa.fa-user.fa-fw
+                  i.fa.fa-caret-down
+                ul.dropdown-menu.dropdown-user
+                  li
+                    a(href='/persona/edit/#{req.session.passport.user}')
+                      i.fa.fa-user.fa-fw
+                      | User Profile
+                  li
+                    a(href='#')
+                      i.fa.fa-gear.fa-fw
+                      | Settings
+                  li.divider
+                  li
+                    a(href='/logout')
+                      i.fa.fa-sign-out.fa-fw
+                      | Logout
+
+        .navbar-default.navbar-static-side(role='navigation')
+          .sidebar-collapse
+            ul#side-menu.nav
+              li.sidebar-search
+                .input-group.custom-search-form
+                  input.form-control(type='text', placeholder='Search...')
+                  span.input-group-btn
+                    button.btn.btn-default(type='button')
+                      i.fa.fa-search
+                //
+                   /input-group
+              li
+                a(href='/admin')
+                  i.fa.fa-dashboard.fa-fw
+                  | Panel de adminstración
+              li
+                a(href='/admin/personas')
+                  | Personas
+              li
+                a(href='/admin/talleres')
+                  | Talleres
+              li
+                a(href='/admin/nodos')
+                  | Nodos
+
+      #page-wrapper
+
+        .row
+          .col-lg-12
+            h1.page-header Personas
+          //
+             /.col-lg-12
+        //
+           /.row
+        .row
+          .col-lg-12
+            .panel.panel-default
+              .panel-heading
+                | Personas inscritas
+              //
+                 /.panel-heading
+              .panel-body
+                .table-responsive
+                  table#dataTables-example.table.table-striped.table-bordered.table-hover
+
+                    thead
+                      tr
+                        th Id
+                        th Nombre
+                        th Correo
+                        th Nodo
+                        th Fecha inscripción
+                    tbody
+                      each taller in talleres
+                        tr
+                          td
+                            a(href='/taller/edit/'+ taller.id)
+                              i.fa.fa-edit.fa-fw
+                          td #{taller.nombre}
+                          td #{taller.descripcion}
+                          td #{taller.publicar}
+                            // each nodo in persona.inscritoEnNodo
+                            //   span  #{nodo.nombre}
+                          td
+
+                            a.btn.btn-primary(data-id=taller.id, href="/taller/#{taller.id}/listadoInscritos") Personas inscritas
+                              //button.btn.btn-primary(data-toggle="modal" data-target="#myModal") Personas inscritas
+
+
+
+
+      #myModal.modal.fade(style='display: none;', tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+              h4#myModalLabel.modal-title Modal title
+            .modal-body
+              iframe(src="", id="iframe2", style="zoom:0.60; overflow: auto", frameborder="0", width="99.6%", height = "500")
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal') Close
+
+
+  //
+    Core Scripts - Include with every page
+  script(src='/js/jquery.js')
+  script(src='/js/bootstrap.min.js')
+  script(type='text/javascript', src='/js/bootstrap-select.js')
+  script(src='/js/plugins/metisMenu/jquery.metisMenu.js')
+  //
+     Page-Level Plugin Scripts - Dashboard
+  script(src='/js/plugins/morris/raphael-2.1.0.min.js')
+  script(src='/js/plugins/morris/morris.js')
+
+  //
+     Page-Level Plugin Scripts - Tables
+  script(src='/js/plugins/dataTables/jquery.dataTables.js')
+  script(src='/js/plugins/dataTables/dataTables.bootstrap.js')
+
+  //
+     SB Admin Scripts - Include with every page
+  script(src='/js/sb-admin.js')
+
+  //
+     Page-Level Demo Scripts - Dashboard - Use for reference
+      script(src='/js/demo/dashboard-demo.js')
+
+  //
+     Page-Level Demo Scripts - Tables - Use for reference
+  script
+    | $('#dataTables-example tfoot th').each( function () {
+    |  var title = $('#dataTables-example thead th').eq( $(this).index() ).text();
+    |  $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    |  } );
+    | $(document).ready(function() {
+    | var table = $('#dataTables-example').dataTable();
+    |    // popover demo
+    |    $("[data-toggle=popover]")
+    |        .popover()
+    | });
+
+  script(type="text/javascript", src='/js/app.js')

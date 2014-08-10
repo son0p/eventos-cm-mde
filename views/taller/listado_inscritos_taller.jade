@@ -1,0 +1,76 @@
+doctype html
+html(lang='en')
+head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Inscripciones Casas de la música
+
+    //        Bootstrap core CSS
+    link(href='/styles/bootstrap.css', rel='stylesheet')
+    link(href='/styles/bootstrap-select.css', rel='stylesheet')
+    link(href='/styles/bootstrap-tagsinput.css', rel='stylesheet')
+    link(href='/styles/datepicker3.css', rel='stylesheet')
+    //        Custom CSS for the 'Heroic Features' Template
+    link(href='/styles/heroic-features.css', rel='stylesheet')
+
+    script(type='text/javascript', src="/js/dependencies/sails.io.js")
+    script(type='text/javascript', src='/js/jquery.js')
+    script(type='text/javascript', src='/js/bootstrap.js')
+    script(type='text/javascript', src='/js/bootstrap-select.js')
+    script(type='text/javascript', src='/js/bootstrap-tagsinput.js')
+    script(type='text/javascript', src='/js/bootstrap-datepicker.js')
+    script(type='text/javascript', src='/js/locales/bootstrap-datepicker.es.js')
+    script(type='text/javascript', src='/js/typeahead.bundle.js')
+    script(type='text/javascript', src='/js/underscore-min.js')
+    script(type="text/javascript")
+      | $('.selectpicker').selectpicker();
+    script(type="text/javascript", src='/js/app.js')
+
+
+  body
+    #talleres-persona
+      .row
+        .col-lg-12
+          .panel.panel-default
+            .panel-heading
+              | Talleres
+      .row.col-lg-12.panel-body
+
+        .table-responsive
+          table#dataTables-example.table.table-striped.table-bordered.table-hover
+
+            thead
+              tr
+                th Id
+                th Taller
+                th Proceso taller
+            tbody
+              each persona in taller.inscritos
+                tr
+                  td
+                    a(href='#')
+                      //persona/:id/inscritoEnTaller/:id/remove')
+                      button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                      i.fa.fa-edit.fa-fw
+                  td #{persona.nombre}
+                  td
+                    a.btn.btn-primary(href="/procesotaller/activarProceso?taller=#{taller.id}&persona=#{persona.id}") Iniciar proceso
+
+
+
+  // #form-inscripcion
+  //   .row
+    //     .col-lg-12
+    //     form(role="form", name = "inscripcion_taller")
+    //       fieldset
+    //         .col-md-12.hide
+    //           input.form-control(type="text", value="#{persona_id}", name="persona_id", placeholder="persona_id")
+    //         .col-md-12
+    //           label.control-label(for="inscripcion_taller") Inscribirse en taller
+    //           select.selectpicker.col-md-6(name="inscripcion_taller", value="", data-live-search="true", data-container="body")
+    //             - each taller in talleres
+    //               option(data-id=taller.id) #{taller.nombre}
+    //         .col-md-6
+    //           input.btn.btn-primary(value="Inscribirse", name="inscripcion_taller", type="button")

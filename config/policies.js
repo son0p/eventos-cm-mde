@@ -32,7 +32,8 @@ module.exports.policies = {
     'edit_process': 'authenticated',
     'index': true,
     'find': true,
-    'inscritos': true
+    'inscritos': true,
+    'listadoInscritos': true
   },
   NodoController: {
     '*': false,
@@ -44,13 +45,18 @@ module.exports.policies = {
     'create': true,
     'edit': 'authenticated',
     'conocerte': 'authenticated',
-    'update': 'authenticated'
+    'update': 'authenticated',
+    'inscribirEnTaller': 'authenticated',
+    'render_inscribirEnTaller': 'authenticated'
   },
   AdminController : {
     '*' : false,
     'index' : ['authenticated','isAdmin'],
     'talleres' : ['authenticated','isAdmin'],
     'personas' : ['authenticated','isAdmin']
+  },
+  ProcesotallerController : {
+    '*' : true
   }
   /*
 	// Here's an example of adding some policies to a controller
