@@ -25,7 +25,7 @@ module.exports = {
     });
   },
   getTalleresActivos : function(req, res, next) {
-    Taller.find({publicar: 'true'}).sort({ fecha: 'asc' }).exec(function(err, talleres){
+    Taller.find({publicar: true}).sort({ fecha: 'asc' }).exec(function(err, talleres){
       var talleresArray = [];
       _.each(talleres, function(taller){
         talleresArray.push(taller.toJSON());

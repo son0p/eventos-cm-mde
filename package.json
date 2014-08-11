@@ -28,7 +28,7 @@
     "nodemailer": "^0.6.5",
     "waterline": "^0.10.0-rc14",
     "moment-recur": "^1.0.0",
-    "moment": "^2.7.0"
+    "moment": "^2.8.1"
   },
   "scripts": {
     "start": "node app.js",

@@ -26,10 +26,11 @@ module.exports = {
     lugar : { type : 'STRING' },
     fecha : { type : 'DATE' },
     fechaFinaliza : { type : 'DATE' },
-    periodicidad : { 
+    periodicidad : {
       type : 'INTEGER',
-      defaultsTo : '0'
-      },
+      defaultsTo : '0',
+      enum : [0,1,8]
+    },
     hora : { type : 'STRING' },
     contacto : { type : 'STRING' },
     urlImagen : { type : 'STRING' },
